@@ -1,0 +1,1433 @@
+---
+title: "TutoRial - Part 2"
+subtitle: "Marine Ecosystem Dynamics"
+author:
+  - "Kinlan Jan"
+  - "Baptiste Serandour"
+format:
+  html:
+    html-math-method: katex
+    toc: true
+    toc-depth: 3
+---
+
+```{r}
+#| echo: false
+#| eval: true
+#| message: false
+suppressWarnings(library(tidyr))
+suppressWarnings(library(kableExtra))
+suppressWarnings(library(dplyr))
+```
+
+The goal of this tutorial is to be familiar with the `tidyverse`, especially with `tidyr`, `dplyr`, and `ggplot2` and to learn how to handle our datasets.
+
+## Pipes
+
+Pipes are very useful and powerful to let the data *flow* from one function to another. This was first implemented in the `magrittr` packages with pipes that looks like this: `%>%`. This was so powerful, that in the versio 4.1.0 of **R** native pipes operator were launched and they look like this: `|>`.
+
+::: {.callout-tip title="Tips"}
+1.  The easiest way to write the pipe is by using the keys: ⌘/Ctlr + ⇧ + M.
+2.  In the parameters you can choose if you want to use the native pipe operator when using these keys.
+:::
+
+### Exercises
+
+-   Rewrite this chunks of code using the pipes
+
+```{r}
+#| echo: true
+#| eval: false
+sum(c(1,2,3,4,5))
+```
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+c(1,2,3,4,5) |> 
+  sum()
+```
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+round(mean(seq(from = 0, to = 1.5, by = 0.2)), 2)
+```
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+seq(from = 0, to = 1.5, by = 0.2) |> 
+  mean() |> 
+  round(2)
+```
+:::
+
+```{r}
+#| echo: true
+#| eval: false
+plot(sample(rnorm(10000, 20, 10), 200, replace = TRUE),y = sample(1:20, 200, replace = TRUE))
+```
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+rnorm(10000, 20, 10) |> 
+  sample(200, replace = TRUE) |> 
+  plot(y = sample(1:20, 200, replace = TRUE))
+```
+:::
+
+## Tidy the data with `tidyr`
+
+As seen during the lecture, the concept of a tidy table is that:
+
+1.  Each variable is in its own column
+2.  Each observation is in its own row
+
+To reach the tidy concept, we can use 4 key functions:
+
+1.  `pivot_longer` - it transforms a wide dataset into a long dataset
+2.  `pivot_wider` - it transforms a long dataset into a wide dataset
+3.  `unite` - it unifies 2 columns into 1
+4.  `separate` - it separates 1 columns into 2
+
+### Exercises
+
+From this point onwards, we will use the datasets available in the package [PlanktonData](https://kmgjan.github.io/PlanktonData/). All the raw data come from [SHARKweb](https://sharkweb.smhi.se/hamta-data/).
+
+-   Install `devtools` and then `PlanktonData`.
+
+```{r}
+#| echo: true
+#| eval: false
+install.packages("devtools")
+devtools::install_github("KMGJan/PlanktonData")
+```
+
+-   Load the dataset `zooplankton` in your environment
+
+::: {style="height:200px;overflow:auto;"}
+```{r}
+#| echo: false
+#| eval: true
+#| tbl-cap-location: top
+library(PlanktonData)
+data(zooplankton)
+zooplankton |>
+  kableExtra::kbl(format="html") |> 
+  kableExtra::kable_styling(bootstrap_options = "border")
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+library(PlanktonData)
+data(zooplankton)
+```
+:::
+
+-   Is this dataset a tidy table?
+
+::: {.callout-tip collapse="true" title="Hint"}
+```{r}
+#| echo: true
+#| eval: false
+str(zooplankton)
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+✓ Each variable is in its own column ✓ Each observation is in its own row
+
+... But `Coordinates` contains 2 values (Latitude/Longitude)
+:::
+
+-   Separate `Coordinates` in 2 columns: `Longitude` and `Latitude`
+
+::: {style="height:200px;overflow:auto;"}
+```{r}
+#| echo: false
+#| eval: true
+zooplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  kableExtra::kbl(format="html") |> 
+  kableExtra::kable_styling(bootstrap_options = "border")
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+zooplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/")
+```
+:::
+
+-   Unite `Group` and `Taxa` to create `Group_Taxa`
+
+::: {style="height:200px;overflow:auto;"}
+```{r}
+#| echo: false
+#| eval: true
+zooplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  tidyr::unite(col = "Group_Taxa", c(Group, Taxa)) |> 
+  kableExtra::kbl(format="html") |> 
+  kableExtra::kable_styling(bootstrap_options = "border")
+
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+zooplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  unite(col = "Group_Taxa", c(Group, Taxa))
+```
+:::
+
+-   Make a wide table with columns showing the `Biomass` values for each `Group_Taxa`
+
+::: {style="height:200px;overflow:auto;"}
+```{r}
+#| echo: false
+#| eval: true
+zooplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  tidyr::unite(col = "Group_Taxa", c(Group, Taxa)) |> 
+  tidyr::pivot_wider(names_from = Group_Taxa, values_from = Biomass) |>
+
+  kableExtra::kbl(format="html") |> 
+  kableExtra::kable_styling(bootstrap_options = "border")
+
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+zooplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  tidyr::unite(col = "Group_Taxa", c(Group, Taxa)) |> 
+  tidyr::pivot_wider(names_from = Group_Taxa, values_from = Biomass) 
+```
+:::
+
+## Manipulate the data with `dplyr`
+
+Once the data are tidy, we can start using the `dplyr` package to process our data. The main advantage of this package is that the functions are self-explanatory by their names and simple to use.
+
+### Exercises
+
+-   Load the dataset `phytoplankton` in your environment
+
+::: {style="height:200px;overflow:auto;"}
+```{r}
+#| echo: false
+#| eval: true
+data(phytoplankton)
+phytoplankton |> 
+
+  kableExtra::kbl(format="html") |> 
+  kableExtra::kable_styling(bootstrap_options = "border")
+
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+data(phytoplankton)
+```
+:::
+
+-   As with the `zooplankton` dataset, separate `Coordinates` as `Longitude` and `Latitude`
+
+::: {style="height:200px;overflow:auto;"}
+```{r}
+#| echo: false
+#| eval: true
+phytoplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  kableExtra::kbl(format="html") |> 
+  kableExtra::kable_styling(bootstrap_options = "border")
+
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+phytoplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") 
+```
+:::
+
+-   What is the class of the `Longitude` and `Latitude` columns?
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+They are characters.
+
+```{r}
+#| echo: true
+#| eval: true
+phytoplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  str()
+```
+:::
+
+-   If they are not numeric, modify them as numeric
+
+::: {.callout-tip collapse="true" title="Hint"}
+```{r}
+#| echo: true
+#| eval: false
+?as.numeric
+?mutate
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+phytoplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  dplyr::mutate(Longitude = as.numeric(Longitude),
+                Latitude = as.numeric(Latitude))
+```
+:::
+
+-   Keep only the data from year between 2008 and 2010
+
+::: {.callout-tip collapse="true" title="Hint"}
+```{r}
+#| echo: true
+#| eval: false
+example("%in%")
+?filter
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+phytoplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  dplyr::mutate(Longitude = as.numeric(Longitude),
+                Latitude = as.numeric(Latitude)) |> 
+  dplyr::filter(Year %in% 2008:2010)
+```
+:::
+
+-   Keep only the data with biomass higher or equal to 0.5 $\ \mu g L^{-1}$
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+phytoplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  dplyr::mutate(Longitude = as.numeric(Longitude),
+                Latitude = as.numeric(Latitude)) |> 
+  dplyr::filter(Year %in% 2008:2010,
+                Biomass >= 0.5)
+```
+:::
+
+-   Rename `Month_abb` as `Month`
+
+::: {style="height:200px;overflow:auto;"}
+```{r}
+#| echo: false
+#| eval: true
+phytoplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  dplyr::mutate(Longitude = as.numeric(Longitude),
+                Latitude = as.numeric(Latitude)) |> 
+  dplyr::filter(Year %in% 2008:2010,
+                Biomass >= 0.5) |> 
+  dplyr::rename(Month = Month_abb) |> 
+
+  kableExtra::kbl(format="html") |> 
+  kableExtra::kable_styling(bootstrap_options = "border")
+
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+phytoplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  dplyr::mutate(Longitude = as.numeric(Longitude),
+                Latitude = as.numeric(Latitude)) |> 
+  dplyr::filter(Year %in% 2008:2010,
+                Biomass >= 0.5) |> 
+  dplyr::rename(Month = Month_abb)
+```
+:::
+
+-   Keep all the column except `Longitude`
+
+::: {style="height:200px;overflow:auto;"}
+```{r}
+#| echo: false
+#| eval: true
+phytoplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  dplyr::mutate(Longitude = as.numeric(Longitude),
+                Latitude = as.numeric(Latitude)) |> 
+  dplyr::filter(Year %in% 2008:2010,
+                Biomass >= 0.5) |> 
+  dplyr::rename(Month = Month_abb) |> 
+  dplyr::select(-Longitude) |> 
+
+  kableExtra::kbl(format="html") |> 
+  kableExtra::kable_styling(bootstrap_options = "border")
+
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+phytoplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  dplyr::mutate(Longitude = as.numeric(Longitude),
+                Latitude = as.numeric(Latitude)) |> 
+  dplyr::filter(Year %in% 2008:2010,
+                Biomass >= 0.5) |> 
+  dplyr::rename(Month = Month_abb) |> 
+  dplyr::select(-Longitude)
+```
+:::
+
+-   Make a summary table showing the `Taxa` average `Month`ly `Biomass` between `Station`
+
+::: {style="height:200px;overflow:auto;"}
+```{r}
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+phytoplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  dplyr::mutate(Longitude = as.numeric(Longitude),
+                Latitude = as.numeric(Latitude)) |> 
+  dplyr::filter(Year %in% 2008:2010,
+                Biomass >= 0.5) |> 
+  dplyr::rename(Month = Month_abb) |> 
+  dplyr::select(-Longitude) |> 
+  dplyr::group_by(Station, Month, Taxa) |> 
+  dplyr::summarise(Average_Biomass = mean(Biomass)) |> 
+  kableExtra::kbl(format="html") |> 
+  kableExtra::kable_styling(bootstrap_options = "border")
+
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+phytoplankton |> 
+  tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
+  dplyr::mutate(Longitude = as.numeric(Longitude),
+                Latitude = as.numeric(Latitude)) |> 
+  dplyr::filter(Year %in% 2008:2010,
+                Biomass >= 0.5) |> 
+  dplyr::rename(Month = Month_abb) |> 
+  dplyr::select(-Longitude) |> 
+  dplyr::group_by(Station, Month, Taxa) |> 
+  dplyr::summarise(Average_Biomass = mean(Biomass)) |> 
+  dplyr::ungroup()
+```
+
+::: callout-tip
+Once you have made your operation using `group_by` and `summarise`, you can pipe the function `ungroup()`
+:::
+:::
+
+## Data visualisation with `ggplot2`
+
+In this part we will build a plot step by step using the grammar of graphic in `ggplot2`.
+
+### Exercises
+
+-   Load the `ggplot2` library and import the `zooplankton` dataset
+
+```{r, bag-1}
+#| echo: false
+#| eval: true
+#| warning: false
+library(ggplot2)
+data(zooplankton)
+```
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-1}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   Create a dataframe named `df` containing only `Centropages` biomass
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+df <- zooplankton |> 
+  dplyr::filter(Taxa == "Centropages")
+```
+:::
+
+-   Initiate a ggplot using the data `df` and the `Month_abb` on the x-axis and the `Biomass` on the y-axis
+
+```{r, bag-2}
+#| echo: false
+#| eval: true
+#| fig-height: 5
+#| fig-width: 7
+
+ggplot(data = df,
+       mapping = aes(x = Month_abb,
+                     y = Biomass))
+
+```
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-2}
+#| echo: true
+#| eval: false
+```
+:::
+
+::: {.callout-warning collapse="true"}
+The month are ordered by alphabetical order, this can be changed using the code below
+
+```{r}
+#| echo: true
+#| eval: true
+df_ordered <- df |> 
+  dplyr::mutate(Month_abb = factor(Month_abb, levels = month.abb))
+```
+
+And then run again the initiation but this time with the dataframe `df_ordered`
+
+```{r}
+#| echo: true
+#| eval: true
+ggplot(data = df_ordered,
+       mapping = aes(x = Month_abb,
+                     y = Biomass))
+
+```
+:::
+
+-   Add the biomass data as point
+
+```{r, bag-3}
+#| echo: false
+#| eval: true
+#| fig-height: 5
+#| fig-width: 7
+ggplot(data = df_ordered,
+       mapping = aes(x = Month_abb,
+                     y = Biomass)) +
+  geom_point()
+```
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-3}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   Separate the plot into 3 facets corresponding to the stations
+
+```{r, bag-4}
+#| echo: false
+#| eval: true
+#| fig-height: 5
+#| fig-width: 7
+ggplot(data = df_ordered,
+       mapping = aes(x = Month_abb,
+                     y = Biomass)) +
+  geom_point()+
+  facet_wrap(~Station)
+```
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-4}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   Color the points by `Year`
+
+```{r, bag-5}
+#| echo: false
+#| eval: true
+#| fig-height: 5
+#| fig-width: 7
+ggplot(data = df_ordered,
+       mapping = aes(x = Month_abb,
+                     y = Biomass)) +
+  geom_point(mapping = aes(color = Year))+
+  facet_wrap(~Station)
+```
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-5}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   Rotate by 90° the x-axis text, change the color, the size and the font face of strip text and add a background color
+
+```{r, bag-7}
+#| echo: false
+#| eval: true
+#| fig-height: 5
+#| fig-width: 7
+ggplot(data = df_ordered,
+       mapping = aes(x = Month_abb,
+                     y = Biomass)) +
+  geom_point(mapping = aes(color = Year)) +
+  facet_wrap(~Station) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90),
+        strip.text = element_text(color = "firebrick",
+                                  size = 12,
+                                  face = "bold"),
+        panel.background = element_rect(fill = "forestgreen"))
+```
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-7}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   Change the x-axis name to `Month` and add a title `My plot`
+
+```{r, bag-8}
+#| echo: false
+#| eval: true
+#| fig-height: 5
+#| fig-width: 7
+p <- ggplot(data = df_ordered,
+       mapping = aes(x = Month_abb,
+                     y = Biomass)) +
+  geom_point(mapping = aes(color = Year)) +
+  facet_wrap(~Station) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90),
+        strip.text = element_text(color = "firebrick",
+                                  size = 12,
+                                  face = "bold"),
+        panel.background = element_rect(fill = "forestgreen")) +
+  labs(x = "Month",
+       title = "My plot")
+p
+```
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-8}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   Now create a dataframe `df_summary`that contain the mean and the standard error of Centropages monthly biomass by `Station` between 2007 and 2021
+
+```{r, bag-9}
+#| echo: false
+#| eval: true
+df_summary <- df |>
+  group_by(Month_abb, Station) |> 
+  summarise(Average = mean(Biomass),
+            SE = se(Biomass)) |> 
+  ungroup()
+```
+
+::: {.callout-tip collapse="true" title="Hint"}
+Have a look at the function `se` from the `PlanktonData` package
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-9}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   Add a `geom_bar` showing the average monthly biomass to the plot
+
+```{r, bag-15}
+#| echo: false
+#| eval: true
+#| fig-height: 5
+#| fig-width: 7
+p +
+  geom_bar(data = df_summary,
+           mapping = aes(x = Month_abb,
+                         y = Average),
+           stat = "identity")
+```
+
+::: {.callout-tip collapse="true" title="Hint"}
+-   We can use another `geom_*` with another `data` using `+`
+-   Sometime it is also important to add the parameter `stat = "identity"` in a `geom_bar`
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-15}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   Add a `geom_errorbar` showing the mean ± standard error
+
+```{r, bag-10}
+#| echo: false
+#| eval: true
+#| fig-height: 5
+#| fig-width: 7
+p +
+  geom_bar(data = df_summary,
+           mapping = aes(x = Month_abb,
+                         y = Average),
+           stat = "identity") +
+  geom_errorbar(data = df_summary,
+                mapping = aes(x = Month_abb,
+                              y = Average,
+                              ymin = Average - SE,
+                              ymax = Average + SE))
+```
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-10}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   Change the `fill` to of the bar to `#EFF675` and `width` of the errorbar to 0
+
+```{r, bag-11}
+#| echo: false
+#| eval: true
+#| fig-height: 5
+#| fig-width: 7
+p +
+  geom_bar(data = df_summary,
+           mapping = aes(x = Month_abb,
+                         y = Average),
+           stat = "identity",
+           fill = "#EFF675") +
+  geom_errorbar(data = df_summary,
+                mapping = aes(x = Month_abb,
+                              y = Average,
+                              ymin = Average - SE,
+                              ymax = Average + SE),
+                width = 0)
+```
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-11}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   Make these changes from the initial plot:
+    -   Change the points to a jitter plot that is in front of the bars
+    -   Change the shape of the jitter to the `shape` `21`
+    -   Change the `color` of the bars to `black` and `fill` them as well as the `jitter` according to the `Station`
+    -   Remove the `panel background` and change the color of the `strip text` to `black`
+
+```{r}
+#| echo: false
+#| eval: true
+#| fig-height: 5
+#| fig-width: 7
+df_summary <- df_summary |> 
+  mutate(Month_abb = factor(Month_abb, levels = month.abb))
+```
+
+```{r, bag-12}
+#| echo: false
+#| eval: true
+#| fig-height: 5
+#| fig-width: 7
+ggplot(data = df_ordered,
+       mapping = aes(x = Month_abb,
+                     y = Biomass)) +
+  
+  # First start with the bars
+  geom_bar(data = df_summary,
+           mapping = aes(x = Month_abb,
+                         y = Average,
+                         fill = Station),
+           stat = "identity",
+           alpha = 0.2, # <------ this is the transparency argument
+           col = "black") + # <------- this add the color around the bars 
+  # Add the errorbar
+  geom_errorbar(data = df_summary,
+                mapping = aes(x = Month_abb,
+                              y = Average,
+                              ymin = Average - SE,
+                              ymax = Average + SE),
+                width = 0) +
+  # Replace geom_point with geom_jitter
+  geom_jitter(mapping = aes(fill = Station), # <----- that is filled according to the station
+              shape = 21, # <---- and from the shape 21
+              # With geom_jitter, we can chose how much jitter we want. I suggest to set only a jitter on the x-axis and not on the y-axis
+              width = .1,
+              height = 0) +
+  facet_wrap(~Station) +
+  theme_classic() +
+  theme(axis.text.x = element_text(angle = 90),
+        strip.text = element_text(color = "black",
+                                  size = 12,
+                                  face = "bold"),
+        panel.background = element_rect(fill = "transparent"),
+        legend.position = "none") +
+  labs(x = "Month",
+       title = "My plot") +
+  # This is optional but you can chose the fill color like this
+  scale_fill_manual(values = c("#01665e","#d8b365", "#762a83"))
+
+```
+
+::: {.callout-tip collapse="true" title="Hint"}
+The order matters. The first `geom_*` will be the first pasted on the plot.
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+First we need to reorder the `df_summary` as we did with the `df_ordered`
+
+```{r}
+#| echo: true
+#| eval: false
+df_summary <- df_summary |> 
+  mutate(Month_abb = factor(Month_abb, levels = month.abb))
+```
+
+And then we can plot
+
+```{r, bag-12}
+#| echo: true
+#| eval: false
+```
+:::
+
+## Optional exercises
+
+::: panel-tabset
+## Exercise 1
+
+::: panel-tabset
+## Exercise
+
+Create this plot using the data `zooplankton` and `phytoplankton`:
+
+```{r, bag-18}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
+data("zooplankton") ; data("phytoplankton")
+
+plankton <-
+  phytoplankton |> 
+  dplyr::mutate(Group = "Phytoplankton") |> # <---- We need to add a Group column to rbind it
+  rbind(zooplankton)
+```
+
+```{r, bag-16}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
+df <- 
+  plankton |> 
+  dplyr::filter(Group %in% c("Phytoplankton", "Copepoda")) |> 
+  dplyr::mutate(Season = case_when(
+    Month_abb %in% month.abb[1:3] ~ "Winter",
+    Month_abb %in% month.abb[4:6] ~ "Spring",
+    Month_abb %in% month.abb[7:9] ~ "Summer",
+    Month_abb %in% month.abb[10:12] ~ "Autumn"),
+    Season = factor(Season, levels = c("Winter", "Spring", "Summer", "Autumn"))) |> 
+  dplyr::group_by(Season, Year, Station, Group) |> 
+  dplyr::summarise(Tot_Biomass_log = log(sum(Biomass))) |> 
+  dplyr::ungroup() |> 
+  tidyr::pivot_wider(names_from = Group, values_from = Tot_Biomass_log) |> 
+  tidyr::drop_na()
+```
+
+```{r, bag-17}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
+#| fig-height: 9
+#| fig-width: 5
+ggplot(data = df,
+       mapping = aes(x = Phytoplankton,
+                     y = Copepoda)) +
+  geom_point(mapping = aes(shape = Season,
+                           fill = Season),
+             size = 3) +
+  scale_shape_manual(values = c(21, 22, 23, 24)) +
+  facet_wrap(~Station, ncol = 1) +
+  geom_smooth(mapping = aes(group = Season,
+                            col = Season),
+              se = FALSE,
+              method = "lm") +
+  labs(x = "log(Phytoplankton Biomass)",
+       y = "log(Copepod Biomass)",
+       title = "Relationship between total phytoplankton and\ntotal copepod biomass across stations and seasons") +
+  theme_bw() +
+  theme(legend.position = "bottom",
+        strip.background = element_blank(),
+        strip.text = element_text(hjust = 1,
+                                  face = "bold"),
+        panel.grid = element_blank()) +
+  scale_color_manual(values = c("#ADA9B7", "#B9E28C", "#FFB84C", "#DFD3C3")) +
+  scale_fill_manual(values = c("#ADA9B7", "#B9E28C", "#FFB84C", "#DFD3C3"))
+
+```
+
+## Step by step solution
+
+-   Combine the datasets `zooplankton` and `phytoplankton` to create a dataset named `plankton`
+
+::: {.callout-tip collapse="true" title="Hint"}
+```{r}
+#| echo: true
+#| eval: false
+?rbind()
+```
+
+This functions requires the same number and name of columns!
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-18}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   From the dataset `plankton` keep only the values of for `Copepoda` and `Phytoplankton`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+plankton |> 
+  dplyr::filter(Group %in% c("Phytoplankton", "Copepoda"))
+```
+:::
+
+-   Add a `Season` column containing the seasons (Winter = Jan, Feb, Mar; Spring = Apr, May, Jun; Summer = July, Aug, Sep; Autumn= Oct, Nov, Dec)
+-   We can also specify that this is a factor that has levels
+
+::: {.callout-tip collapse="true" title="Hint"}
+```{r}
+#| echo: true
+#| eval: false
+?case_when()
+?month.abb
+```
+
+We to select a value within a vector we can also use the `[]`. For example:
+
+```{r}
+#| echo: true
+#| eval: true
+x <- c("One", "Two", "Three", "Four")
+x[1]
+x[1:3]
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+plankton |> 
+  dplyr::filter(Group %in% c("Phytoplankton", "Copepoda")) |> 
+  dplyr::mutate(Season = case_when(
+    Month_abb %in% month.abb[1:3] ~ "Winter",
+    Month_abb %in% month.abb[4:6] ~ "Spring",
+    Month_abb %in% month.abb[7:9] ~ "Summer",
+    Month_abb %in% month.abb[10:12] ~ "Autumn"),
+    Season = factor(Season, levels = c("Winter", "Spring", "Summer", "Autumn")))
+
+```
+:::
+
+-   Take the `Year`ly `Season`al `Biomass` sum by `Station` for these 2 groups and transform the data by taking the `log` of this biomass
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+plankton |> 
+  dplyr::filter(Group %in% c("Phytoplankton", "Copepoda")) |> 
+  dplyr::mutate(Season = case_when(
+    Month_abb %in% month.abb[1:3] ~ "Winter",
+    Month_abb %in% month.abb[4:6] ~ "Spring",
+    Month_abb %in% month.abb[7:9] ~ "Summer",
+    Month_abb %in% month.abb[10:12] ~ "Autumn"),
+    Season = factor(Season, levels = c("Winter", "Spring", "Summer", "Autumn"))) |> 
+  dplyr::group_by(Season, Year, Station, Group) |> 
+  dplyr::summarise(Tot_Biomass_log = log(sum(Biomass))) |> 
+  dplyr::ungroup()
+```
+:::
+
+-   Make the data wide and save it as `df` (and remove all the row with `NA` values)
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-16}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   Start to plot by using the `geom_point`
+    -   The `shape` is changing according to the `Season`
+    -   The `fill` is changing according to the `Season`
+    -   The size of the points are fixed to `3`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(data = df,
+       mapping = aes(x = Phytoplankton,
+                     y = Copepoda)) +
+  geom_point(mapping = aes(shape = Season,
+                           fill = Season),
+             size = 3)
+```
+:::
+
+-   Specify that the `shape` should be `21`, `22`, `23` and `24`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(data = df,
+       mapping = aes(x = Phytoplankton,
+                     y = Copepoda)) +
+  geom_point(mapping = aes(shape = Season,
+                           fill = Season),
+             size = 3) +
+  scale_shape_manual(values = c(21, 22, 23, 24)) 
+  
+```
+:::
+
+-   Split the plot vertically based on the `Season`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(data = df,
+       mapping = aes(x = Phytoplankton,
+                     y = Copepoda)) +
+  geom_point(mapping = aes(shape = Season,
+                           fill = Season),
+             size = 3) +
+  scale_shape_manual(values = c(21, 22, 23, 24)) +
+  facet_wrap(~Station, ncol = 1)
+```
+:::
+
+-   Add the regression lines for each `Station` and `Season` without the standard error
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(data = df,
+       mapping = aes(x = Phytoplankton,
+                     y = Copepoda)) +
+  geom_point(mapping = aes(shape = Season,
+                           fill = Season),
+             size = 3) +
+  scale_shape_manual(values = c(21, 22, 23, 24)) +
+  facet_wrap(~Station, ncol = 1) +
+  geom_smooth(mapping = aes(group = Season,
+                            col = Season),
+              se = FALSE,
+              method = "lm")
+```
+:::
+
+-   Modify the labels
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+ggplot(data = df,
+       mapping = aes(x = Phytoplankton,
+                     y = Copepoda)) +
+  geom_point(mapping = aes(shape = Season,
+                           fill = Season),
+             size = 3) +
+  scale_shape_manual(values = c(21, 22, 23, 24)) +
+  facet_wrap(~Station, ncol = 1) +
+  geom_smooth(mapping = aes(group = Season,
+                            col = Season),
+              se = FALSE,
+              method = "lm") +
+  labs(x = "log(Phytoplankton Biomass)",
+       y = "log(Copepod Biomass)",
+       title = "Relationship between total phytoplankton and\ntotal copepod biomass across stations and seasons")
+```
+:::
+
+-   Modify the theme of the plot
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, bag-17}
+#| echo: true
+#| eval: false
+```
+:::
+:::
+
+## Exercise 2
+
+::: panel-tabset
+## Exercise
+
+Create this plot using the two datasets
+
+```{r, phytoplanktonplot}
+#| echo: false
+#| eval: true
+p1 <-
+  phytoplankton |> 
+  dplyr::filter(Month_abb %in% c("Aug", "Sep")) |>
+
+  ggplot(mapping = aes(x = Month_abb,
+                       y = Biomass,
+                       fill = Taxa)) +
+  geom_bar(position = "fill",
+           stat = "identity") +
+  facet_wrap(~Station, ncol = 1) +
+
+  scale_fill_manual("Phytoplankton", # This change the title of the legend
+                    values = c("#F5A65B", "#8BBD8B", "#8B9474", "#B388EB", "#28587B"))+
+  theme_void() +
+  theme(axis.text.x = element_text(color = "black"),
+        strip.text = element_text(color = "black", hjust = .1),
+        axis.title.y = element_text(color = "black", angle = 90)) +
+  labs(y = "Relative biomass")
+```
+
+```{r, zooplanktonplot}
+#| echo: false
+#| eval: true
+p2 <- 
+  zooplankton |> 
+  dplyr::filter(Month_abb %in% c("Aug", "Sep")) |>
+
+  ggplot(mapping = aes(x = Month_abb,
+                       y = Biomass,
+                       fill = Taxa)) +
+  geom_bar(position = "fill",
+           stat = "identity") +
+  facet_wrap(~Station, ncol = 1) +
+
+
+  scale_fill_manual("Zooplankton",
+                    values = c("#816C61", "#E7DFC6", "#E7BBE3", "#7CC6FE", "#EE6C4D", "#B6C9BB", "#9684A1", "#BFEDC1", "#B19994", "black")) +
+  theme_void() +
+  theme(axis.text = element_text(color ="black"),
+        strip.text = element_text(color = "transparent"))
+```
+
+```{r, finalplot}
+#| echo: false
+#| eval: true
+#| message: false
+#| warning: false
+#| fig-height: 9
+#| fig-width: 5
+library(patchwork)
+p1 + p2 +
+  plot_layout(guides = "collect") # This collect the legend together
+```
+
+## Step by step solution
+
+-   Start with loading the `phytoplankton` dataset
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+data("phytoplankton")
+```
+:::
+
+-   Filter the Month `Aug` and `Sep`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+phytoplankton |> 
+  dplyr::filter(Month_abb %in% c("Aug", "Sep"))
+```
+:::
+
+-   Initiate a plot with the `Month_abb` on the x-axis, the `Biomass` on the y-axis and that is filled according to their `Taxa`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+phytoplankton |> 
+  dplyr::filter(Month_abb %in% c("Aug", "Sep")) |> 
+    ggplot(mapping = aes(x = Month_abb,
+                       y = Biomass,
+                       fill = Taxa))
+```
+
+::: callout-tip
+You can pipe directly your dataset into `ggplot`. It will know that `data = what_is_above`
+:::
+:::
+
+-   Add a `geom_bar`
+
+::: {.callout-tip collapse="true" title="Hint"}
+Look what `position` we can apply to `geom_bar`
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+phytoplankton |> 
+  dplyr::filter(Month_abb %in% c("Aug", "Sep")) |> 
+    ggplot(mapping = aes(x = Month_abb,
+                       y = Biomass,
+                       fill = Taxa)) +
+  geom_bar(position = "fill",
+           stat = "identity")
+```
+:::
+
+-   Separate the plot in facets by `Station`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+phytoplankton |> 
+  dplyr::filter(Month_abb %in% c("Aug", "Sep")) |> 
+    ggplot(mapping = aes(x = Month_abb,
+                       y = Biomass,
+                       fill = Taxa)) +
+  geom_bar(position = "fill",
+           stat = "identity") +
+  facet_wrap(~Station, ncol = 1) 
+```
+:::
+
+-   Modify the labels, fill values, theme and the y-axis and save the plot as `p1`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, phytoplanktonplot}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   Do the same for the `zooplankton`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, zooplanktonplot}
+#| echo: true
+#| eval: false
+```
+:::
+
+-   Combine the two plots together using the package `patchwork`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, finalplot}
+#| echo: true
+#| eval: false
+```
+:::
+:::
+
+## Exercise 3
+
+::: panel-tabset
+## Exercise
+
+Using `phytoplankton`create this plot:
+
+```{r, cyanoplot}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
+#| fig-height: 5
+#| fig-width: 7
+phytoplankton |> 
+  dplyr::mutate(Taxa = ifelse(Taxa == "Cyanobacteria", "Cyanobacteria", "Other"),
+                Month = factor(Month_abb, levels = month.abb)) |> 
+  dplyr::group_by(Taxa, Station, Month, Year) |> 
+  dplyr::summarise(Tot_biomass = sum(Biomass)) |> 
+  dplyr::ungroup() |> 
+  tidyr::pivot_wider(names_from = Taxa, values_from = Tot_biomass) |> 
+  tidyr::drop_na() |> 
+  dplyr::mutate(Total = Cyanobacteria + Other,
+                Cyano_prop = (Cyanobacteria/Total) * 100) |> 
+  dplyr::select(Station, Month, Year, Cyano_prop) |> 
+  ggplot(mapping = aes(x = Month,
+                       y = Year,
+                       fill = Cyano_prop)) +
+  geom_tile(col = "black") +
+  facet_grid(~Station) +
+  coord_fixed() +
+  labs(x = NULL, y = NULL)+
+  theme_minimal() +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 90, vjust=0.5),
+        panel.grid = element_blank()) +
+  scale_fill_gradient2("Proportion of\nCyanobacteria", low = "#E3DFFF", high = "#DC0073", midpoint = 50)
+  
+```
+
+## Step by step solution
+
+This is one solution, but several other exist !
+
+-   Rename the taxa either `Cyanobacteria` or `Other` and transform `Month_abb` as a factor
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+
+phytoplankton |> 
+  dplyr::mutate(Taxa = ifelse(Taxa == "Cyanobacteria", "Cyanobacteria", "Other"),
+                Month = factor(Month_abb, levels = month.abb))
+  
+```
+:::
+
+-   Calculate the sum of `Biomass` by `Month`, `Taxa`, `Station` and `Year`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+
+phytoplankton |> 
+  dplyr::mutate(Taxa = ifelse(Taxa == "Cyanobacteria", "Cyanobacteria", "Other"),
+                Month = factor(Month_abb, levels = month.abb)) |> 
+  dplyr::group_by(Taxa, Station, Month, Year) |> 
+  dplyr::summarise(Tot_biomass = sum(Biomass)) |> 
+  dplyr::ungroup()
+```
+:::
+
+-   Pivot the table and remove the `NA` and calculate the proportion of `Cyanobacteria`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+
+phytoplankton |> 
+  dplyr::mutate(Taxa = ifelse(Taxa == "Cyanobacteria", "Cyanobacteria", "Other"),
+                Month = factor(Month_abb, levels = month.abb)) |> 
+  dplyr::group_by(Taxa, Station, Month, Year) |> 
+  dplyr::summarise(Tot_biomass = sum(Biomass)) |> 
+  dplyr::ungroup() |> 
+  tidyr::pivot_wider(names_from = Taxa, values_from = Tot_biomass) |> 
+  tidyr::drop_na() |> 
+  dplyr::mutate(Total = Cyanobacteria + Other,
+                Cyano_prop = (Cyanobacteria/Total) * 100) |> 
+  dplyr::select(Station, Month, Year, Cyano_prop) # This is not needed but it is easier to have a simpler table
+```
+:::
+
+-   Initiate the plot using `geom_tile` and separate according to the `Station`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+
+phytoplankton |> 
+  dplyr::mutate(Taxa = ifelse(Taxa == "Cyanobacteria", "Cyanobacteria", "Other"),
+                Month = factor(Month_abb, levels = month.abb)) |> 
+  dplyr::group_by(Taxa, Station, Month, Year) |> 
+  dplyr::summarise(Tot_biomass = sum(Biomass)) |> 
+  dplyr::ungroup() |> 
+  tidyr::pivot_wider(names_from = Taxa, values_from = Tot_biomass) |> 
+  tidyr::drop_na() |> 
+  dplyr::mutate(Total = Cyanobacteria + Other,
+                Cyano_prop = (Cyanobacteria/Total) * 100) |> 
+  dplyr::select(Station, Month, Year, Cyano_prop) |>  # This is not needed but it is easier to have a simpler table
+  ggplot(mapping = aes(x = Month,
+                       y = Year,
+                       fill = Cyano_prop)) +
+  geom_tile(col = "black") +
+  facet_grid(~Station)
+```
+:::
+
+-   Implement some `theme` changes
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r, cyanoplot}
+#| echo: true
+#| eval: false
+```
+:::
+:::
+:::

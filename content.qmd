@@ -1,0 +1,16 @@
+---
+title: "content"
+editor: visual
+---
+
+:::{.contents-table .column-body-outset}
+
+|Topic                                  |Teachers                                 |Links|
+|---------------------------------------|---------------------------------------|-----|
+|[**02-Sep-2023 (Saturday)**]{.highlight}    |                                       ||
+|Introduction to R                 |Kinlan Jan & Baptiste Serandour                    |[Slides](slides/Part1/index.html), [Tutorial](tutorial/Part1/index.html)|
+|[**03-Sep-2023 (Sunday)**]{.highlight}    |                                       ||
+|Data manipulation and visualisation                 |Kinlan Jan & Baptiste Serandour                    |[Slides](slides/Part2/index.html), [Tutorial](tutorial/Part1/index.html)|
+
+
+:::

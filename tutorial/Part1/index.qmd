@@ -1,0 +1,539 @@
+---
+title: "TutoRial - Part 1"
+subtitle: "Marine Ecosystem Dynamics"
+author:
+  - "Kinlan Jan"
+  - "Baptiste Serandour"
+format:
+  html:
+    html-math-method: katex
+    toc: true
+    toc-depth: 3
+---
+
+```{r}
+#| echo: false
+#| eval: true
+suppressWarnings(library(tibble))
+suppressWarnings(library(kableExtra))
+suppressWarnings(library(readr))
+```
+
+## New script
+
+As seen during the presentation, we will keep track of our progress. We thus need to open a new script following one of the option below.
+
+```{mermaid}
+flowchart LR
+  A[1. File] --> B[2. New File]
+  B --> C[3. R script]
+```
+
+```{mermaid}
+flowchart LR
+  A["⌘/Ctlr + ⇧ + N"]
+```
+
+## **R** syntax
+
+**R** is a programming language that use a simplified syntax. In this section, you will explore how to write a script and execute it.
+
+But first some syntax information:
+
+-   Everything after `#` is considered as a command and will not be executed. It is very important to write what we are doing, so we do not get lost next time we open our scripts.
+
+```{r}
+#| echo: true
+#| eval: true
+
+# 2 + 2 will not work because of the #
+2 + 2 # We should then annotate our script like this
+```
+
+-   Several lines of code can be written in one line but must be separated by
+
+```{r}
+#| echo: true
+#| eval: true
+2 + 2
+3 * 2
+
+# This can also be written as follow:
+2 + 2 ; 3 * 2
+```
+
+-   In **R** we can name a function, vector, or other object using `=` or `<-`
+
+```{r}
+#| echo: true
+#| eval: true
+my_vector <- c(1, 2, 3, 4)
+my_function = function(x){x + 2}
+```
+
+-   `==` is a logical function that can be translated as *is equal to*, contrarily *is not equal to* is written `!=`
+
+```{r}
+#| echo: true
+#| eval: true
+2 + 2 == 4
+3 * 2 == 4
+3 * 2 != 4
+```
+
+### Exercises
+
+1.  Do these calculations in a new **R** script
+
+-   $\ 2^7$
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+2^7
+```
+:::
+
+-   $\ cos(\pi)$
+
+::: {.callout-tip collapse="true" title="Hint"}
+```{r}
+#| echo: true
+#| eval: false
+?cos()
+?pi()
+```
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+cos(pi)
+```
+:::
+
+-   $\ \sum_{1}^{100} i$
+
+::: {.callout-tip collapse="true" title="Hint"}
+Operations can take place for an entire vector
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+vector <- seq(from = 1, to = 100, by = 1) # Create a vector from 1 to 100
+sum(vector) # Calculate the sum
+```
+:::
+
+2.  Create a parameter `x1` that equals to 5 and a parameter `x2` that equals to 10
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+x1 <- 5 ; x2 <-  10
+```
+:::
+
+3.  Is 2`x1` equivalent to `x2`?
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+2*x1 == x2
+```
+:::
+
+## Functions
+
+As seen during the lecture, **R** works with functions that can:
+
+-   Already be implemented in base **R**
+-   Comming from another package
+-   Created by the user
+
+We will see these three examples in this section, but first it is important to remember that the typical structure of a function is `function(argument_1, ...)`. It is impossible to remember what are all the argument, but fortunately **R** helps us:
+
+-   Using `help()` or `?`
+
+```{r}
+#| echo: true
+#| eval: false
+help(topic = "sin")
+?sin
+```
+
+<img src="../../assets/images/Help_sin.png" width="100%"/>
+
+-   Using `example`
+
+```{r}
+#| echo: true
+#| eval: true
+example(sum)
+```
+
+For the functions that comes from another package, we first need to install the new packages. The most common way to do so is by executing `install.packages("Package_Name")`. Then everytime you open a new session and you want to use the package, start the script by executing `library(Package_Name)`.
+
+Finally, if you really do not find a suitable function in a package, or want to create your own function, you can create your functions following this general structure:
+
+```{r}
+#| echo: true
+#| eval: false
+my_function <- function(<argument_1>, <argument_2>, ...){
+  <here comes the definition of my function>
+  return(<output of the definition>)
+}
+```
+
+### Exercises
+
+-   What is the function `log()` doing and from were does this function come from (base **R**, other packages)?
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+?log() #It takes the natural logarithm of the value, it comes from base R
+log(10) 
+```
+:::
+
+-   What are the mandatory arguments for the function `plot()`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+?plot() # the coordinates points x and y are needed
+```
+:::
+
+-   Install the package named `readr` and load it
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+install.packages("readr")
+library(readr)
+```
+:::
+
+-   Is there help associated with the functions from a loaded package?
+
+::: {.callout-tip collapse="true" title="Hint"}
+The function `read_csv` comes from this package
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+?read_csv # Yes, there is also help for the imported functions
+```
+:::
+
+::: {.callout title="Optional exercises"}
+-   Create a function that print `Hello World!` when executing it
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+Hello <- function(){
+  cat("Hello World!") # print("Hello World!") works too
+}
+Hello()
+```
+:::
+
+-   Create a function that multiply the input by 4
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+multiplyeR <- function(x, y = 4){
+  return(x * y)
+}
+multiplyeR(x = 2) # It works with values
+multiplyeR(x = seq(1, 3, 1)) # But also vectors
+```
+:::
+:::
+
+## Vectors
+
+**R** works with vector from which we can do our calculations. There is several way to create a vector:
+
+-   Using `c()` values are added next to each other
+
+```{r}
+#| echo: true
+#| eval: true
+c(1, 2, 1, 4) # It works with integers (round numbers)
+c(1.1, 2.4, pi) # It works with floats (decimal numbers)
+c("chocolate", "ice-cream") # It works with character
+c(TRUE, FALSE) # It works with logical variables
+```
+
+-   Using `rep()` to repeat the same values
+
+```{r}
+#| echo: true
+#| eval: true
+rep(3, 2) # It works with integers
+rep(3.2, 3) # It works with floats
+rep("chocolate", 2) # It works with character
+rep(TRUE, 3) # It works with logical variables
+```
+
+-   For numeric values (integers and floats) we can also use `seq` that produce a sequence from a value to another one
+
+```{r}
+#| echo: true
+#| eval: true
+seq(from = 2, to = 6, by = 2)
+seq(from = 0, to = 1, by = 0.2)
+```
+
+::: callout-tip
+if you want to do a sequence using `by = 1` it is easier to write it like this: `from:to`
+
+```{r}
+#| echo: true
+#| eval: true
+1:10
+seq(from = 1, to = 10, by = 1) == 1:10
+```
+:::
+
+-   Finally, we can also combine vector together
+
+```{r}
+#| echo: true
+#| eval: true
+c(c(2, 1), seq(from = 2, to = 4, by = 0.5), rep("a", 2))
+```
+
+### Exercises
+
+-   Create a vector `v1` that contains the values 3, 5, 1, 2, 6
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+v1 <- c(3, 5, 1, 2, 6)
+```
+:::
+
+-   Create a vector `v2` that contains four times the values 3, 5, 1, 2, 6
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+v2 <- rep(v1, 4)
+```
+:::
+
+-   Create a vector `v3` that repeats `TRUE`, `FALSE` 5 times
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+v3 <- rep(c(TRUE, FALSE), 5)
+```
+:::
+
+-   Create a vector `v4` that goes from 10 to 200
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+v4 <- 10:200
+```
+:::
+
+-   Create a vector `v5` that contains `v1`, `v2`, `v3` and 2 times `v4`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+v5 <- c(v1, v2, v3, rep(v4, 2))
+```
+:::
+
+## Tibbles
+
+Now that we have seen how to create vectors, we can start combining them in a dataframe, called `tibble`.
+
+-   First, load (and install if it is not done `install.packages("tibble")`) the`tibble` package.
+
+```{r}
+#| echo: true
+#| eval: false
+library(tibble)
+?tibble
+```
+
+-   Second, fill a tibble
+
+```{r}
+#| echo: true
+#| eval: true
+tibble(Plankton_type = c(rep("Zooplankton", 6), rep("Phytoplankton", 6)),
+       Biomass = c(65, 12, 42, 51, 23, 72, 10, 11, 21, 14, 23, 13))
+```
+
+-   Then, we can access the individual vector (or column of the tibble) using `$` or `[[]]`
+
+```{r}
+#| echo: true
+#| eval: true
+example <- tibble(Plankton_type = c(rep("Zooplankton", 6), rep("Phytoplankton", 6)),
+       Biomass = c(65, 12, 42, 51, 23, 72, 10, 11, 21, 14, 23, 13))
+
+example$Plankton_type
+example[[2]]
+```
+
+### Exercises
+
+-   Create a tibble named `df` that look like this:
+
+```{r}
+#| echo: false
+#| eval: true
+tibble(Genus = c("Acartia", "Centropages", "Centropages", "Acartia", "Temora", "Temora"),
+       Station = "B1",
+       Abundance = c(65.6, 32.6, 68.8, 91.0, 53.4, 89.6)) |> 
+  kableExtra::kbl(format = "html", table.attr = "style='width:30%;'")
+```
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+df <- tibble(Genus = c("Acartia", "Centropages", "Centropages", "Acartia", "Temora", "Temora"),
+       Station = "B1",
+       Abundance = c(65.6, 32.6, 68.8, 91.0, 53.4, 89.6))
+```
+:::
+
+-   Create a vector `output` that correspond to the column `Abundance` of the tibble `df`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+output <- df$Abundance # or df[[3]]
+```
+:::
+
+## Importing data
+
+Often, we are not preparing our dataset in **R**. Thus, importing dataset is essential to process our data. To do so, we will see how to use the `read_*` function from the `readr` package.
+
+::: callout-tip
+When saving our spreadsheet, it is always a good idea to save the document as *.csv*
+:::
+
+A typical data import look like this
+
+1.  Set the working directory with its absolute path. So every time you want to import/export, you can use the relative path writen as `./...`
+
+```{r}
+#| echo: true
+#| eval: false
+setwd("/Absolute/Path/To/Working/Directory") 
+```
+
+2.  Load the `readr` package
+
+```{r}
+#| echo: true
+#| eval: false
+library(readr)
+```
+
+3.  Import you dataset
+
+```{r}
+#| echo: true
+#| eval: false
+df <- read_csv("./The/relative/path/to/my/dataset.csv")
+```
+
+4.  Examine the data if the importation worked well
+
+```{r}
+#| echo: true
+#| eval: false
+str(df)
+```
+
+### Exercises
+
+-   Import and inspect the dataset `zooplankton_seasonality.csv`
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+
+```{r}
+#| echo: true
+#| eval: true
+#| output: false
+plankton_seasonality <- read_csv("/Users/kinlan/OneDrive - Stockholm University/PhD/Teaching/MarineEcosystemDynamics2023/Tutorial/Data/zooplankton_seasonality.csv")
+str(plankton_seasonality)
+```
+or
+```{r}
+#| echo: true
+#| eval: false
+setwd("/Users/kinlan/OneDrive - Stockholm University/PhD/Teaching/MarineEcosystemDynamics2023/Tutorial")
+plankton_seasonality <- read_csv("./Data/zooplankton_seasonality.csv")
+str(plankton_seasonality)
+```
+:::
+
+::: {.callout-tip collapse="true"}
+Sometimes it is tricky to import directly in the good format, so it might be better to specify that the new dataset is a `tibble`
+
+```{r}
+#| echo: true
+#| eval: true
+plankton_seasonality <- as_tibble(plankton_seasonality)
+str(plankton_seasonality)
+```
+:::
+
+-   How many rows and columns are there in this dataset?
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+nrow(plankton_seasonality)
+ncol(plankton_seasonality)
+```
+:::
+
+-   Write the dataset `df` that you created in your working directory
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: false
+write_csv(df, file = "./Data/df.csv")
+```
+:::

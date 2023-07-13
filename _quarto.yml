@@ -1,19 +1,64 @@
 project:
   type: website
+  output-dir: docs
+  render: 
+    - "*.qmd"
+    - "*.md"
 
 website:
-  title: "MED"
+  image: "assets/images/Rlogo.svg"
   navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+    logo: "assets/images/tidyr.svg"
+    logo-alt: "stockholm university logo."
+    right:
+      - text: "CONTENTS"
+        href: "contents.html"
+      - text: ABOUT
+        href: "contents.html"
+
+  site-url: "https://kmgjan.github.io/MED/"
 
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    quarto-required: ">=1.2.2"
+    smooth-scroll: true
     toc: true
+    toc-depth: 4
+    toc-location: right
+    number-sections: true
+    number-depth: 4
+    code-fold: false
+    code-tools: false
+    code-copy: true
+    code-overflow: wrap
+    df-print: kable
+    standalone: false
+    fig-align: left
+    date:  last-modified
+    date-format: "DD-MMM-YYYY"
+    lightbox: 
+      match: auto
+  revealjs:
+    quarto-required: ">=1.2.269"
+    width: 1280
+    height: 720
+    transition: "fade"
+    transition-speed: "fast"
+    smaller: false
+    slide-number: true
+    progress: true
+    date:  last-modified
+    date-format: "DD-MMM-YYYY"
+    fig-align: left
+    chalkboard: true
 
+knitr:
+  opts_chunk:
+    results: hold
 
-
+execute:
+  eval: true
+  echo: true
+  warning: false
+  message: false
+  freeze: auto
