@@ -7,6 +7,6 @@ title: "Program"
 |Date                                      | Topic                                  |Slides                              | Tutorial                              |
 |------------------------------------------|----------------------------------------|------------------------------------|---------------------------------------|
 |[**02-Sep-2023 (Saturday)**]{.highlight}  | Introduction to R                      | [Part 1](slides/Part1/index.html)  | [Part 1](tutorial/Part1/index.html) |
-|[**03-Sep-2023 (Sunday)**]{.highlight}    | Data manipulation and visualisation    | [Part 2](slides/Part2/index.html)  | [Part 2](tutorial/Part1/index.html)|
+|[**03-Sep-2023 (Sunday)**]{.highlight}    | Data manipulation and visualisation    | [Part 2](slides/Part2/index.html)  | [Part 2](tutorial/Part2/index.html)|
 
 :::
