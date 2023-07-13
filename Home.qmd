@@ -1,0 +1,12 @@
+---
+title: "Home"
+editor: visual
+format:
+  html:
+    html-math-method: katex
+    toc: true
+    toc-depth: 3
+---
+
+
+This is my first website

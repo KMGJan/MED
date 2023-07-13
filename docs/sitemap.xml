@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://kmgjan.github.io/MED/content.html</loc>
-    <lastmod>2023-07-13T13:32:35.878Z</lastmod>
+    <lastmod>2023-07-13T13:46:37.052Z</lastmod>
   </url>
   <url>
     <loc>https://kmgjan.github.io/MED/slides/Part1/Part1.html</loc>
@@ -27,5 +27,9 @@
   <url>
     <loc>https://kmgjan.github.io/MED/tutorial/Part1/index.html</loc>
     <lastmod>2023-07-13T13:29:41.783Z</lastmod>
+  </url>
+  <url>
+    <loc>https://kmgjan.github.io/MED/Home.html</loc>
+    <lastmod>2023-07-13T13:46:38.334Z</lastmod>
   </url>
 </urlset>

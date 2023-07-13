@@ -1,6 +1,11 @@
 ---
 title: "content"
 editor: visual
+format:
+  html:
+    html-math-method: katex
+    toc: true
+    toc-depth: 3
 ---
 
 :::{.contents-table .column-body-outset}
