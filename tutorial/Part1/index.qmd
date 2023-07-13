@@ -9,6 +9,12 @@ format:
     html-math-method: katex
     toc: true
     toc-depth: 3
+knitr:
+  opts_chunk:
+    echo: true
+    collapse: true
+    comment: "#>"
+    fig.align: "center"
 ---
 
 ```{r}

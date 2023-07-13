@@ -13,6 +13,12 @@ format:
     show-slide-number: all
     chalkboard: true
     logo: "../../assets/images/SU_logo.png"
+knitr:
+  opts_chunk:
+    echo: true
+    collapse: true
+    comment: "#>"
+    fig.align: "center"
 ---
 
 ## Plan for today's lecture

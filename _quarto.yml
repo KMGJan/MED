@@ -1,31 +1,26 @@
 project:
   type: website
   output-dir: docs
-  render: 
-    - "*.qmd"
-    - "*.md"
+  
+
+  
 
 website:
+  title: "Introduction to R - Marine Ecosystem Dynamics"
   navbar:
-    logo: "assets/images/SU_logo.png"
-    right:
-      - text: "HOME"
-        href: "Home.html"
-      - text: "CONTENTS"
-        href: "contents.html"
+    left:
+      - href: index.html
+        text: Home
+      - href: about.html
+        text: About
+      - href: program.html
+        text: Program
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
 
 
-  site-url: "https://kmgjan.github.io/MED/"
 
-
-
-knitr:
-  opts_chunk:
-    results: hold
-
-execute:
-  eval: true
-  echo: true
-  warning: false
-  message: false
-  freeze: auto

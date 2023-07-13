@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.361">
 
   <meta name="author" content="Kinlan Jan, Baptiste Serandour">
-  <title>Introduction to R</title>
+  <title>Introduction to R - Marine Ecosystem Dynamics - Introduction to R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -403,7 +403,6 @@ Kinlan Jan, Baptiste Serandour
 </div>
 </div>
 
-  <p class="date">13-Jul-2023</p>
 </section>
 <section id="plan-for-todays-lecture" class="slide level2">
 <h2>Plan for today’s lecture</h2>
@@ -437,14 +436,12 @@ Kinlan Jan, Baptiste Serandour
 <li>Open source</li>
 <li>Reproducible science</li>
 </ul>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="co"># You can keep track of all the data analysis steps</span></span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span>       <span class="co"># step 1</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">log</span>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span>)  <span class="co"># step 2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 7
-[1] 1.94591</code></pre>
-</div>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="co">#&gt; [1] 7</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="fu">log</span>(<span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">+</span> <span class="dv">3</span>)  <span class="co"># step 2</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="co">#&gt; [1] 1.94591</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
 <h3 id="cons">Cons</h3>
@@ -452,17 +449,17 @@ Kinlan Jan, Baptiste Serandour
 <li>Scary</li>
 <li>Syntax</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># This can be scary</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(ggplot2) ; <span class="fu">library</span>(dplyr) ; <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">tibble</span>(<span class="at">Month =</span> <span class="fu">sample</span>(month.abb, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb3-4"><a href="#cb3-4"></a>       <span class="at">Genus =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Acartia"</span>, <span class="st">"Temora"</span>, <span class="st">"Centropages"</span>, <span class="st">"Pseudocalanus"</span>), <span class="dv">100</span>, <span class="at">replace =</span> T),</span>
-<span id="cb3-5"><a href="#cb3-5"></a>       <span class="at">Abundance =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="dv">12</span>,<span class="dv">7</span>)) <span class="sc">|&gt;</span> </span>
-<span id="cb3-6"><a href="#cb3-6"></a>  <span class="fu">group_by</span>(Month, Genus) <span class="sc">|&gt;</span> </span>
-<span id="cb3-7"><a href="#cb3-7"></a>  <span class="fu">summarise</span>(<span class="at">Avg_abundance =</span> <span class="fu">mean</span>(Abundance, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span> </span>
-<span id="cb3-8"><a href="#cb3-8"></a> </span>
-<span id="cb3-9"><a href="#cb3-9"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Genus, <span class="at">y =</span> Avg_abundance)) <span class="sc">+</span></span>
-<span id="cb3-10"><a href="#cb3-10"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># This can be scary</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="fu">library</span>(ggplot2) ; <span class="fu">library</span>(dplyr) ; <span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="fu">tibble</span>(<span class="at">Month =</span> <span class="fu">sample</span>(month.abb, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb2-4"><a href="#cb2-4"></a>       <span class="at">Genus =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">"Acartia"</span>, <span class="st">"Temora"</span>, <span class="st">"Centropages"</span>, <span class="st">"Pseudocalanus"</span>), <span class="dv">100</span>, <span class="at">replace =</span> T),</span>
+<span id="cb2-5"><a href="#cb2-5"></a>       <span class="at">Abundance =</span> <span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="dv">12</span>,<span class="dv">7</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-6"><a href="#cb2-6"></a>  <span class="fu">group_by</span>(Month, Genus) <span class="sc">|&gt;</span> </span>
+<span id="cb2-7"><a href="#cb2-7"></a>  <span class="fu">summarise</span>(<span class="at">Avg_abundance =</span> <span class="fu">mean</span>(Abundance, <span class="at">na.rm =</span> T)) <span class="sc">|&gt;</span> </span>
+<span id="cb2-8"><a href="#cb2-8"></a> </span>
+<span id="cb2-9"><a href="#cb2-9"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Genus, <span class="at">y =</span> Avg_abundance)) <span class="sc">+</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>    <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -486,9 +483,9 @@ Kinlan Jan, Baptiste Serandour
 <li>A package need to be installed only once</li>
 <li>To use functions within a package call it using <code>library()</code></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="fu">install.packages</span>(<span class="st">"PackageName"</span>)</span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">library</span>(PackageName)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">install.packages</span>(<span class="st">"PackageName"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">library</span>(PackageName)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="r-syntax" class="slide level2">
@@ -499,26 +496,22 @@ Kinlan Jan, Baptiste Serandour
 <ul>
 <li>R can resolve “basic” operation</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">4</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a>(<span class="dv">5</span> <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">4</span> <span class="sc">-</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 4
-[1] 12
-[1] 21</code></pre>
-</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="dv">2</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co">#&gt; [1] 4</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="dv">3</span> <span class="sc">*</span> <span class="dv">4</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">#&gt; [1] 12</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a>(<span class="dv">5</span> <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">*</span> (<span class="dv">4</span> <span class="sc">-</span> <span class="dv">1</span>)</span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">#&gt; [1] 21</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>And more complex operation</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">sin</span>(<span class="dv">60</span>)</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">log</span>(<span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] -0.3048106
-[1] 2.302585</code></pre>
-</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">sin</span>(<span class="dv">60</span>)</span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="co">#&gt; [1] -0.3048106</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">log</span>(<span class="dv">10</span>)</span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">#&gt; [1] 2.302585</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:30%;">
 <p><img src="../../assets/images/calculator.png" style="width:90%;"></p>
@@ -533,10 +526,10 @@ Kinlan Jan, Baptiste Serandour
 <li>Numeric: <code>3.1</code> or <code>4</code></li>
 <li>Character: <code>Example</code></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>variable_1 <span class="ot">&lt;-</span> <span class="fl">4.3</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>variable_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
-<span id="cb9-3"><a href="#cb9-3"></a>variable_3 <span class="ot">&lt;-</span> <span class="st">"text"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>variable_1 <span class="ot">&lt;-</span> <span class="fl">4.3</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>variable_2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
+<span id="cb6-3"><a href="#cb6-3"></a>variable_3 <span class="ot">&lt;-</span> <span class="st">"text"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="callout callout-tip callout-titled callout-style-default">
@@ -548,8 +541,8 @@ Kinlan Jan, Baptiste Serandour
 <p><strong>Assigning the same value for multiple variable</strong></p>
 </div>
 <div class="callout-content">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>variable_4 <span class="ot">&lt;-</span> variable_5 <span class="ot">&lt;-</span> variable_6 <span class="ot">&lt;-</span> <span class="st">"Value"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>variable_4 <span class="ot">&lt;-</span> variable_5 <span class="ot">&lt;-</span> variable_6 <span class="ot">&lt;-</span> <span class="st">"Value"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -561,15 +554,15 @@ Kinlan Jan, Baptiste Serandour
 <ul>
 <li>All functions have the same structure but the number of argument may change <code>function_name(argument1, ...)</code></li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">log</span>(<span class="dv">10</span>)</span>
-<span id="cb11-2"><a href="#cb11-2"></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="1|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">log</span>(<span class="dv">10</span>)</span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="fu">plot</span>(x, y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>To know what arguments are needed, we can always refer to the manuals using <code>?</code> before the function</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>?<span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>?<span class="fu">plot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div style="text-align:center">
 <p><img src="../../assets/images/Plot_help.png" style="width:70%;"></p>
@@ -580,19 +573,17 @@ Kinlan Jan, Baptiste Serandour
 <ul>
 <li>You can define your own functions:</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="1,3|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>my_addition <span class="ot">&lt;-</span> <span class="cf">function</span>(parameter_1, parameter_2, ...){</span>
-<span id="cb13-2"><a href="#cb13-2"></a>  parameter_1 <span class="sc">+</span> parameter_2</span>
-<span id="cb13-3"><a href="#cb13-3"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="1,3|2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>my_addition <span class="ot">&lt;-</span> <span class="cf">function</span>(parameter_1, parameter_2, ...){</span>
+<span id="cb10-2"><a href="#cb10-2"></a>  parameter_1 <span class="sc">+</span> parameter_2</span>
+<span id="cb10-3"><a href="#cb10-3"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>And compare if this is equal to the base R functions:</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">my_addition</span>(<span class="at">parameter_1 =</span> <span class="dv">1</span>, <span class="at">parameter_2 =</span> <span class="dv">2</span>) <span class="sc">==</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] TRUE</code></pre>
-</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">my_addition</span>(<span class="at">parameter_1 =</span> <span class="dv">1</span>, <span class="at">parameter_2 =</span> <span class="dv">2</span>) <span class="sc">==</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="co">#&gt; [1] TRUE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>Note the logical operations are written as follow:
@@ -607,30 +598,26 @@ Kinlan Jan, Baptiste Serandour
 <ul>
 <li>Vectors can be created using different functions</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16" data-code-line-numbers="1,2|3,4|5,6|7,8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>(vector_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>))</span>
-<span id="cb16-2"><a href="#cb16-2"></a>(vector_2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">3</span>))</span>
-<span id="cb16-3"><a href="#cb16-3"></a>(vector_3 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"Yellow"</span>, <span class="dv">3</span>))</span>
-<span id="cb16-4"><a href="#cb16-4"></a>(vector_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(vector_1, vector_2))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 1 3 6
-[1] 2 5 8
-[1] "Yellow" "Yellow" "Yellow"
-[1] 1 3 6 2 5 8</code></pre>
-</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="1,2|3,4|5,6|7,8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>(vector_1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">6</span>))</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co">#&gt; [1] 1 3 6</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>(vector_2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">3</span>))</span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="co">#&gt; [1] 2 5 8</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a>(vector_3 <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="st">"Yellow"</span>, <span class="dv">3</span>))</span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="co">#&gt; [1] "Yellow" "Yellow" "Yellow"</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>(vector_4 <span class="ot">&lt;-</span> <span class="fu">c</span>(vector_1, vector_2))</span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="co">#&gt; [1] 1 3 6 2 5 8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>R works with vectors from which we can do our calculation</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18" data-code-line-numbers="1,2|3,4|5,6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>vector_1 <span class="sc">*</span> <span class="dv">2</span></span>
-<span id="cb18-2"><a href="#cb18-2"></a><span class="fu">mean</span>(vector_4)</span>
-<span id="cb18-3"><a href="#cb18-3"></a><span class="fu">class</span>(vector_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1]  2  6 12
-[1] 4.166667
-[1] "character"</code></pre>
-</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="1,2|3,4|5,6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>vector_1 <span class="sc">*</span> <span class="dv">2</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="co">#&gt; [1]  2  6 12</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="fu">mean</span>(vector_4)</span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="co">#&gt; [1] 4.166667</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="fu">class</span>(vector_3)</span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="co">#&gt; [1] "character"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="importing-data" class="slide level2">
@@ -653,37 +640,33 @@ Kinlan Jan, Baptiste Serandour
 <img data-src="../../assets/images/readr.png" class="r-stretch quarto-figure-center"></section>
 <section id="example" class="slide level2">
 <h2>Example</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20" data-code-line-numbers="1|2|3|4|5,6,7,8,9,10,11,12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb20-2"><a href="#cb20-2"></a></span>
-<span id="cb20-3"><a href="#cb20-3"></a>Example_1 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"./../../assets/data/Example_1.csv"</span>) </span>
-<span id="cb20-4"><a href="#cb20-4"></a><span class="fu">head</span>(Example_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  Month Genus         Abundance
-  &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;
-1 Dec   Centropages      -0.552
-2 Apr   Centropages      12.5  
-3 Feb   Centropages      18.4  
-4 Sep   Acartia          25.6  
-5 Mar   Pseudocalanus     9.70 
-6 Jul   Temora            8.90 </code></pre>
-</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="1|2|3|4|5,6,7,8,9,10,11,12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a>Example_1 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"./../../assets/data/Example_1.csv"</span>) </span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="fu">head</span>(Example_1)</span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="co">#&gt;   Month Genus         Abundance</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co">#&gt; 1 Dec   Centropages      -0.552</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="co">#&gt; 2 Apr   Centropages      12.5  </span></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="co">#&gt; 3 Feb   Centropages      18.4  </span></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="co">#&gt; 4 Sep   Acartia          25.6  </span></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="co">#&gt; 5 Mar   Pseudocalanus     9.70 </span></span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="co">#&gt; 6 Jul   Temora            8.90</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">tail</span>(Example_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 3
-  Month Genus         Abundance
-  &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;
-1 Jan   Pseudocalanus     22.7 
-2 Feb   Acartia           27.6 
-3 Aug   Acartia            7.75
-4 Jan   Centropages       17.0 
-5 Feb   Centropages        5.95
-6 Aug   Temora            17.2 </code></pre>
-</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">tail</span>(Example_1)</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="co">#&gt;   Month Genus         Abundance</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="co">#&gt; 1 Jan   Pseudocalanus     22.7 </span></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="co">#&gt; 2 Feb   Acartia           27.6 </span></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="co">#&gt; 3 Aug   Acartia            7.75</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="co">#&gt; 4 Jan   Centropages       17.0 </span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="co">#&gt; 5 Feb   Centropages        5.95</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="co">#&gt; 6 Aug   Temora            17.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -692,7 +675,7 @@ Kinlan Jan, Baptiste Serandour
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: center;">
-<p><img data-src="../../assetsassets/images/tidyverse.svg"></p>
+<p><img data-src="../../assets/images/tidyverse.svg"></p>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: center;">
 <p><img data-src="../../assets/images/pipe.svg"></p>
@@ -897,10 +880,10 @@ Kinlan Jan, Baptiste Serandour
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'fade',
+        transition: 'none',
 
         // Transition speed (default/fast/slow)
-        transitionSpeed: 'fast',
+        transitionSpeed: 'default',
 
         // Transition style for full page slide backgrounds
         // (none/fade/slide/convex/concave/zoom)
@@ -917,9 +900,9 @@ Kinlan Jan, Baptiste Serandour
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1280,
+        width: 1050,
 
-        height: 720,
+        height: 700,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,

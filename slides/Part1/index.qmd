@@ -13,6 +13,12 @@ format:
     show-slide-number: all
     chalkboard: true
     logo: "../../assets/images/SU_logo.png"
+knitr:
+  opts_chunk:
+    echo: true
+    collapse: true
+    comment: "#>"
+    fig.align: "center"
 ---
 
 ## Plan for today's lecture
@@ -269,7 +275,7 @@ tail(Example_1)
 ## Plan for tomorrow
 
 ::: {layout-ncol="5"}
-![](../../assetsassets/images/tidyverse.svg)
+![](../../assets/images/tidyverse.svg)
 
 ![](../../assets/images/pipe.svg)
 

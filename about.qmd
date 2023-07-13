@@ -2,8 +2,14 @@
 title: "About"
 ---
 
-About this site
+During this tutorial we will see the basics of R and how to handle some data.
 
-```{r}
-1 + 1
-```
+To do so, we will use several packages such as:
+
+-   `ggplot2`
+-   `tidyr`
+-   `dplyr`
+-   `readr`
+-   `magrittr`
+
+The data we will use are all gathered in the package [PlanktonData](https://kmgjan.github.io/PlanktonData/)

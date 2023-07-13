@@ -11,7 +11,7 @@
   <meta name="generator" content="quarto-1.3.361">
 
   <meta name="author" content="Kinlan Jan, Baptiste Serandour">
-  <title>Data manipulation and visualisation</title>
+  <title>Introduction to R - Marine Ecosystem Dynamics - Data manipulation and visualisation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -406,7 +406,6 @@ Kinlan Jan, Baptiste Serandour
 </div>
 </div>
 
-  <p class="date">13-Jul-2023</p>
 </section>
 <section id="plan-for-todays-lecture" class="slide level2">
 <h2>Plan for today’s lecture</h2>
@@ -463,7 +462,7 @@ Kinlan Jan, Baptiste Serandour
 <div class="columns">
 <div class="column" style="width:&quot;50%;">
 <p>Without the pipe operator:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>iris_subset <span class="ot">&lt;-</span> iris[, <span class="fu">c</span>(<span class="st">"Species"</span>, <span class="st">"Sepal.Length"</span>, <span class="st">"Sepal.Width"</span>)]</span>
 <span id="cb1-2"><a href="#cb1-2"></a>iris_subset<span class="sc">$</span>Sepal_Ratio <span class="ot">&lt;-</span> iris_subset<span class="sc">$</span>Sepal.Length <span class="sc">/</span> iris_subset<span class="sc">$</span>Sepal.Width</span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
@@ -473,7 +472,7 @@ Kinlan Jan, Baptiste Serandour
 </div>
 </div><div class="column" style="width:&quot;50%;">
 <p>With the pipe operator:</p>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="fu">library</span>(magrittr)</span>
 <span id="cb2-2"><a href="#cb2-2"></a>iris <span class="sc">%&gt;%</span> </span>
 <span id="cb2-3"><a href="#cb2-3"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Species, Sepal.Length, Sepal.Width) <span class="sc">%&gt;%</span></span>
@@ -513,7 +512,7 @@ Kinlan Jan, Baptiste Serandour
 </section>
 <section id="tidy-the-data-with-tidyr---iris-example" class="slide level2">
 <h2>Tidy the data with <code>tidyr</code> - <code>iris</code> example</h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true" style="width:30%;">
 <thead>
@@ -565,14 +564,14 @@ Kinlan Jan, Baptiste Serandour
 
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>iris <span class="sc">%&lt;&gt;%</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">150</span>)</span>
 <span id="cb3-2"><a href="#cb3-2"></a>iris <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="tidy-the-data-with-tidyr---pivot_longer" class="slide level2">
 <h2>Tidy the data with <code>tidyr</code> - <code>pivot_longer</code></h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true" style="width:30%;">
 <thead>
@@ -614,7 +613,7 @@ Kinlan Jan, Baptiste Serandour
 
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>long_iris <span class="ot">&lt;-</span> iris <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a href="#cb4-2"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>,</span>
 <span id="cb4-3"><a href="#cb4-3"></a>                      <span class="at">names_to =</span> <span class="st">"Parameter"</span>,</span>
@@ -624,7 +623,7 @@ Kinlan Jan, Baptiste Serandour
 </section>
 <section id="tidy-the-data-with-tidyr---separate" class="slide level2">
 <h2>Tidy the data with <code>tidyr</code> - <code>separate</code></h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true" style="width:30%;">
 <thead>
@@ -671,7 +670,7 @@ Kinlan Jan, Baptiste Serandour
 
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>sep_iris <span class="ot">&lt;-</span> long_iris <span class="sc">|&gt;</span> </span>
 <span id="cb5-2"><a href="#cb5-2"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(Parameter, <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Organ"</span>, <span class="st">"Measure"</span>))</span>
 <span id="cb5-3"><a href="#cb5-3"></a>sep_iris <span class="sc">|&gt;</span> <span class="fu">head</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -679,7 +678,7 @@ Kinlan Jan, Baptiste Serandour
 </section>
 <section id="tidy-the-data-with-tidyr---pivot_wider" class="slide level2">
 <h2>Tidy the data with <code>tidyr</code> - <code>pivot_wider</code></h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true" style="width:30%;">
 <thead>
@@ -726,7 +725,7 @@ Kinlan Jan, Baptiste Serandour
 
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>wide_iris <span class="ot">&lt;-</span> sep_iris <span class="sc">|&gt;</span> </span>
 <span id="cb6-2"><a href="#cb6-2"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"Organ"</span>,</span>
 <span id="cb6-3"><a href="#cb6-3"></a>                     <span class="at">values_from =</span> <span class="st">"Size"</span>)</span>
@@ -735,7 +734,7 @@ Kinlan Jan, Baptiste Serandour
 </section>
 <section id="tidy-the-data-with-tidyr---unite" class="slide level2">
 <h2>Tidy the data with <code>tidyr</code> - <code>unite</code></h2>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true" style="width:30%;">
 <thead>
@@ -777,7 +776,7 @@ Kinlan Jan, Baptiste Serandour
 
 </div>
 </div>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>unite_iris <span class="ot">&lt;-</span> wide_iris <span class="sc">|&gt;</span> </span>
 <span id="cb7-2"><a href="#cb7-2"></a>  tidyr<span class="sc">::</span><span class="fu">unite</span>(<span class="at">col =</span> <span class="st">"Sepal/Petal"</span>, <span class="fu">c</span>(Sepal, Petal), <span class="at">sep =</span> <span class="st">"/"</span>)</span>
 <span id="cb7-3"><a href="#cb7-3"></a>unite_iris <span class="sc">|&gt;</span>  <span class="fu">head</span>(<span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -793,7 +792,7 @@ Kinlan Jan, Baptiste Serandour
 <li><code>group_by</code> variable</li>
 <li><code>summarise</code> the data</li>
 </ul>
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>iris <span class="sc">%&gt;%</span></span>
 <span id="cb8-2"><a href="#cb8-2"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Petal.Length <span class="sc">&gt;=</span> <span class="fl">1.4</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb8-3"><a href="#cb8-3"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Sepal_Ratio =</span> Sepal.Length<span class="sc">/</span>Sepal.Width) <span class="sc">%&gt;%</span></span>
@@ -808,13 +807,17 @@ Kinlan Jan, Baptiste Serandour
 <p>It is very important to look at the data. Totally different data might have similar statistics…</p>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/unnamed-chunk-14-1.png" width="960"></p>
+</figure>
+</div>
 </div>
 </div>
 </div><div class="column" style="width:30%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
 <table data-quarto-postprocess="true" style="width:30%;">
 <thead>
@@ -856,22 +859,30 @@ Kinlan Jan, Baptiste Serandour
 <h2>Visualise the data with <code>ggplot2</code></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-0-1.png" width="960"></p>
+</figure>
 </div>
 </div>
-<div class="cell">
+</div>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">plot</span>(<span class="at">x =</span> iris<span class="sc">$</span>Sepal.Length,</span>
 <span id="cb9-2"><a href="#cb9-2"></a>     <span class="at">y =</span> iris<span class="sc">$</span>Sepal.Width)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-01-1.png" width="960"></p>
+</figure>
 </div>
 </div>
-<div class="cell">
+</div>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb10-2"><a href="#cb10-2"></a><span class="fu">ggplot</span>(iris,</span>
 <span id="cb10-3"><a href="#cb10-3"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
@@ -885,12 +896,16 @@ Kinlan Jan, Baptiste Serandour
 <h2>Visualise the data with <code>ggplot2</code></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-1-1.png" width="960"></p>
+</figure>
 </div>
 </div>
-<div class="cell">
+</div>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>species_palette <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"#F8766D"</span>, <span class="st">"#00BA38"</span>, <span class="st">"#619CFF"</span>)</span>
 <span id="cb11-2"><a href="#cb11-2"></a>size_vector <span class="ot">&lt;-</span> iris<span class="sc">$</span>Petal.Width</span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="fu">plot</span>(<span class="at">x =</span> iris<span class="sc">$</span>Sepal.Length,</span>
@@ -907,12 +922,16 @@ Kinlan Jan, Baptiste Serandour
 <span id="cb11-14"><a href="#cb11-14"></a><span class="fu">grid</span>(<span class="at">lwd =</span> <span class="dv">1</span>, <span class="at">lty =</span> <span class="st">"dotted"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-2-1.png" width="960"></p>
+</figure>
 </div>
 </div>
-<div class="cell">
+</div>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb12-2"><a href="#cb12-2"></a><span class="fu">ggplot</span>(iris,</span>
 <span id="cb12-3"><a href="#cb12-3"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
@@ -944,7 +963,7 @@ Kinlan Jan, Baptiste Serandour
 <li>Themes - Visual changes</li>
 </ul>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> <span class="sc">&lt;</span>DATA<span class="sc">&gt;</span>,</span>
 <span id="cb13-2"><a href="#cb13-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="sc">&lt;</span>AESTHETICS<span class="sc">&gt;</span>)) <span class="sc">+</span></span>
 <span id="cb13-3"><a href="#cb13-3"></a>  geom_<span class="sc">&lt;</span>GEOMETRY<span class="sc">&gt;</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -956,13 +975,17 @@ Kinlan Jan, Baptiste Serandour
 <h2>Let’s plot using <code>ggplot2</code> - <em>Data</em></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-4-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -972,15 +995,19 @@ Kinlan Jan, Baptiste Serandour
 <h2>Let’s plot using <code>ggplot2</code> - <em>Aesthetics</em></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15" data-code-line-numbers="NA"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
 <span id="cb15-2"><a href="#cb15-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
 <span id="cb15-3"><a href="#cb15-3"></a>                     <span class="at">y =</span> Sepal.Width))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-5-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -990,16 +1017,20 @@ Kinlan Jan, Baptiste Serandour
 <h2>Let’s plot using <code>ggplot2</code> - <em>Geometry</em></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb16" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
 <span id="cb16-2"><a href="#cb16-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
 <span id="cb16-3"><a href="#cb16-3"></a>                     <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
 <span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-6-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1009,16 +1040,20 @@ Kinlan Jan, Baptiste Serandour
 <h2>Let’s plot using <code>ggplot2</code> - <em>Geometry</em></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb17" data-code-line-numbers="4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
 <span id="cb17-2"><a href="#cb17-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
 <span id="cb17-3"><a href="#cb17-3"></a>                     <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
 <span id="cb17-4"><a href="#cb17-4"></a>  <span class="fu">geom_point</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">col =</span> Species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-7-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1028,7 +1063,7 @@ Kinlan Jan, Baptiste Serandour
 <h2>Let’s plot using <code>ggplot2</code> - <em>Statistics</em></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb18" data-code-line-numbers="5|6,7,8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
 <span id="cb18-2"><a href="#cb18-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
 <span id="cb18-3"><a href="#cb18-3"></a>                     <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
@@ -1039,9 +1074,13 @@ Kinlan Jan, Baptiste Serandour
 <span id="cb18-8"><a href="#cb18-8"></a>                            <span class="at">fill =</span> Species))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-8-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1051,7 +1090,7 @@ Kinlan Jan, Baptiste Serandour
 <h2>Let’s plot using <code>ggplot2</code> - <em>Facets</em></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb19" data-code-line-numbers="9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
 <span id="cb19-2"><a href="#cb19-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
 <span id="cb19-3"><a href="#cb19-3"></a>                     <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
@@ -1063,9 +1102,13 @@ Kinlan Jan, Baptiste Serandour
 <span id="cb19-9"><a href="#cb19-9"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Species)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-9-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1075,7 +1118,7 @@ Kinlan Jan, Baptiste Serandour
 <h2>Let’s plot using <code>ggplot2</code> - <em>Coordinates</em></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb20" data-code-line-numbers="10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
 <span id="cb20-2"><a href="#cb20-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
 <span id="cb20-3"><a href="#cb20-3"></a>                     <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
@@ -1088,9 +1131,13 @@ Kinlan Jan, Baptiste Serandour
 <span id="cb20-10"><a href="#cb20-10"></a>  <span class="fu">coord_polar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-10-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1100,7 +1147,7 @@ Kinlan Jan, Baptiste Serandour
 <h2>Let’s plot using <code>ggplot2</code> - <em>Themes</em></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb21" data-code-line-numbers="11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
 <span id="cb21-2"><a href="#cb21-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
 <span id="cb21-3"><a href="#cb21-3"></a>                     <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
@@ -1114,9 +1161,13 @@ Kinlan Jan, Baptiste Serandour
 <span id="cb21-11"><a href="#cb21-11"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-11-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1126,7 +1177,7 @@ Kinlan Jan, Baptiste Serandour
 <h2>Let’s plot using <code>ggplot2</code> - <em>Themes</em></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb22" data-code-line-numbers="12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
 <span id="cb22-2"><a href="#cb22-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
 <span id="cb22-3"><a href="#cb22-3"></a>                     <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
@@ -1141,9 +1192,13 @@ Kinlan Jan, Baptiste Serandour
 <span id="cb22-12"><a href="#cb22-12"></a>  <span class="fu">theme</span>(<span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">color =</span> <span class="st">"red"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-12-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1153,7 +1208,7 @@ Kinlan Jan, Baptiste Serandour
 <h2>Let’s plot using <code>ggplot2</code> - <em>Themes</em></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb23" data-code-line-numbers="13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
 <span id="cb23-2"><a href="#cb23-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
 <span id="cb23-3"><a href="#cb23-3"></a>                     <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
@@ -1169,9 +1224,13 @@ Kinlan Jan, Baptiste Serandour
 <span id="cb23-13"><a href="#cb23-13"></a>        <span class="at">strip.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">13</span>, <span class="at">color =</span> <span class="st">"pink"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-13-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1181,7 +1240,7 @@ Kinlan Jan, Baptiste Serandour
 <h2>Let’s plot using <code>ggplot2</code> - <em>Extra tips</em></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb24" data-code-line-numbers="14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
 <span id="cb24-2"><a href="#cb24-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
 <span id="cb24-3"><a href="#cb24-3"></a>                     <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
@@ -1198,9 +1257,13 @@ Kinlan Jan, Baptiste Serandour
 <span id="cb24-14"><a href="#cb24-14"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Sepal"</span>, <span class="at">x =</span> <span class="st">"Length"</span> , <span class="at">y =</span> <span class="st">"Width"</span>, <span class="at">subtitle =</span> <span class="st">"relationship between width</span><span class="sc">\n</span><span class="st">and length"</span>, <span class="at">caption =</span> <span class="st">"Caption appear here"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-14-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1210,7 +1273,7 @@ Kinlan Jan, Baptiste Serandour
 <h2>Let’s plot using <code>ggplot2</code> - <em>Extra tips</em></h2>
 <div class="columns">
 <div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb25" data-code-line-numbers="15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> iris,</span>
 <span id="cb25-2"><a href="#cb25-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Sepal.Length,</span>
 <span id="cb25-3"><a href="#cb25-3"></a>                     <span class="at">y =</span> Sepal.Width)) <span class="sc">+</span></span>
@@ -1228,9 +1291,13 @@ Kinlan Jan, Baptiste Serandour
 <span id="cb25-15"><a href="#cb25-15"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"forestgreen"</span>, <span class="st">"firebrick"</span>, <span class="st">"burlywood"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div><div class="column" style="width:50%;">
-<div class="cell">
+<div class="cell" data-layout-align="center">
 <div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure>
 <p><img data-src="index_files/figure-revealjs/bag-15-1.png" width="480"></p>
+</figure>
+</div>
 </div>
 </div>
 </div>
@@ -1400,10 +1467,10 @@ Kinlan Jan, Baptiste Serandour
         previewLinks: false,
 
         // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'fade',
+        transition: 'none',
 
         // Transition speed (default/fast/slow)
-        transitionSpeed: 'fast',
+        transitionSpeed: 'default',
 
         // Transition style for full page slide backgrounds
         // (none/fade/slide/convex/concave/zoom)
@@ -1420,9 +1487,9 @@ Kinlan Jan, Baptiste Serandour
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1280,
+        width: 1050,
 
-        height: 720,
+        height: 700,
 
         // Factor of the display size that should remain empty around the content
         margin: 0.1,

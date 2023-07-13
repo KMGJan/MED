@@ -1,11 +1,9 @@
 ---
-title: "MED"
+title: "MEDWebsite"
+subtitle: "Introduction to R"
 ---
 
-This is a Quarto website.
+On this website, the slides and the tutorial can be found for the Marine Ecosystem Dynamics introduction to R.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+We will have a brief overview on some possibilities that R offers
 
-```{r}
-1 + 1
-```
