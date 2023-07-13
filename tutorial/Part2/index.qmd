@@ -125,6 +125,7 @@ devtools::install_github("KMGJan/PlanktonData")
 library(PlanktonData)
 data(zooplankton)
 zooplankton |>
+  head(50) |> 
   kableExtra::kbl(format="html") |> 
   kableExtra::kable_styling(bootstrap_options = "border")
 ```
@@ -163,7 +164,7 @@ str(zooplankton)
 #| eval: true
 zooplankton |> 
   tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
-    
+  head(50) |> 
   kableExtra::kbl(format="html") |> 
   kableExtra::kable_styling(bootstrap_options = "border")
 ```
@@ -187,7 +188,7 @@ zooplankton |>
 zooplankton |> 
   tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
   tidyr::unite(col = "Group_Taxa", c(Group, Taxa)) |> 
-    
+  head(50) |> 
   kableExtra::kbl(format="html") |> 
   kableExtra::kable_styling(bootstrap_options = "border")
 
@@ -214,7 +215,7 @@ zooplankton |>
   tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
   tidyr::unite(col = "Group_Taxa", c(Group, Taxa)) |> 
   tidyr::pivot_wider(names_from = Group_Taxa, values_from = Biomass) |>
-    
+  head(50) |> 
   kableExtra::kbl(format="html") |> 
   kableExtra::kable_styling(bootstrap_options = "border")
 
@@ -246,7 +247,7 @@ Once the data are tidy, we can start using the `dplyr` package to process our da
 #| eval: true
 data(phytoplankton)
 phytoplankton |> 
-    
+  head(50) |> 
   kableExtra::kbl(format="html") |> 
   kableExtra::kable_styling(bootstrap_options = "border")
 
@@ -269,7 +270,7 @@ data(phytoplankton)
 #| eval: true
 phytoplankton |> 
   tidyr::separate(col = Coordinates, into = c("Longitude", "Latitude"), sep = "/") |> 
-    
+  head(50) |> 
   kableExtra::kbl(format="html") |> 
   kableExtra::kable_styling(bootstrap_options = "border")
 
@@ -372,7 +373,7 @@ phytoplankton |>
   dplyr::filter(Year %in% 2008:2010,
                 Biomass >= 0.5) |> 
   dplyr::rename(Month = Month_abb) |> 
-    
+  head(50) |> 
   kableExtra::kbl(format="html") |> 
   kableExtra::kable_styling(bootstrap_options = "border")
 
@@ -407,7 +408,7 @@ phytoplankton |>
                 Biomass >= 0.5) |> 
   dplyr::rename(Month = Month_abb) |> 
   dplyr::select(-Longitude) |> 
-    
+  head(50) |> 
   kableExtra::kbl(format="html") |> 
   kableExtra::kable_styling(bootstrap_options = "border")
 
@@ -447,7 +448,7 @@ phytoplankton |>
   dplyr::select(-Longitude) |> 
   dplyr::group_by(Station, Month, Taxa) |> 
   dplyr::summarise(Average_Biomass = mean(Biomass)) |> 
-    
+  head(50) |> 
   kableExtra::kbl(format="html") |> 
   kableExtra::kable_styling(bootstrap_options = "border")
 
