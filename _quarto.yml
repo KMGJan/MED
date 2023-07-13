@@ -6,7 +6,7 @@ project:
   
 
 website:
-  title: "Introduction to R - Marine Ecosystem Dynamics"
+  title: "Marine Ecosystem Dynamics 2023"
   navbar:
     left:
       - href: index.html
