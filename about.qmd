@@ -10,14 +10,27 @@ toc: false
 }
   
 </style>
-During this tutorial we will see the basics of R and how to handle some data.
 
-To do so, we will use several packages such as:
+During this introduction course, we will learn the basics of R and how to manipulate data.
 
--   `ggplot2`
--   `tidyr`
--   `dplyr`
--   `readr`
--   `magrittr`
+Throughout this introduction, we will learn how to use ![](./assets/images/Rlogo.svg){height=1.5em style=margin-bottom;} in ![](./assets/images/RSTUDIO.png){height=1.5em style=margin-bottom;}.
 
-The data we will use are all gathered in the package [PlanktonData](https://kmgjan.github.io/PlanktonData/)
+This introduction covers:
+
+- R syntax
+  + R as a calculator
+  + Variables in R
+  + Functions
+- Data import using [`readr`](https://readr.tidyverse.org/)
+- Pipe the data using [`magrittr`](https://magrittr.tidyverse.org/)
+- Tidy the data using [`tidyr`](https://tidyr.tidyverse.org/)
+- Arrange the data using [`dplyr`](https://dplyr.tidyverse.org/)
+- Visualise the data using [`ggplot2`](https://ggplot2.tidyverse.org/)
+
+
+
+The data we will use are all gathered in the package [`PlanktonData`](https://kmgjan.github.io/PlanktonData/)
+
+----
+
+Install [R](https://ftp.acc.umu.se/mirror/CRAN/) and [R studio](https://posit.co/download/rstudio-desktop/) before the start of the course !

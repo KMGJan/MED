@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Introduction to R",
     "section": "",
-    "text": "The Marine Ecosystem Dynamics introduction to R slides and the tutorial are avaiable in the MATERIAL tab."
+    "text": "Introduction to R\n\nMarine Ecosystem Dynamics\n\n02-03 September 2023, Askö, Sweden."
   },
   {
     "objectID": "program.html",
@@ -18,7 +18,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "During this tutorial we will see the basics of R and how to handle some data.\nTo do so, we will use several packages such as:\n\nggplot2\ntidyr\ndplyr\nreadr\nmagrittr\n\nThe data we will use are all gathered in the package PlanktonData"
+    "text": "During this introduction course, we will learn the basics of R and how to manipulate data.\nThroughout this introduction, we will learn how to use  in .\nThis introduction covers:\n\nR syntax\n\nR as a calculator\nVariables in R\nFunctions\n\nData import using readr\nPipe the data using magrittr\nTidy the data using tidyr\nArrange the data using dplyr\nVisualise the data using ggplot2\n\nThe data we will use are all gathered in the package PlanktonData\n\nInstall R and R studio before the start of the course !"
   },
   {
     "objectID": "slides/Part1/index.html#plan-for-todays-lecture",
@@ -439,5 +439,12 @@
     "title": "Introduction to R",
     "section": "",
     "text": "The Marine Ecosystem Dynamics introduction to R slides and the tutorial are avaiable in the MATERIAL tab."
+  },
+  {
+    "objectID": "about.html#to-do-before-the-course",
+    "href": "about.html#to-do-before-the-course",
+    "title": "About",
+    "section": "To do before the course",
+    "text": "To do before the course"
   }
 ]

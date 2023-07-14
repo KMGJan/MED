@@ -17,10 +17,5 @@ toc: false
 
 ##### 02-03 September 2023, Askö, Sweden.
 
-<img src="assets/images/background.png" width="100%"/>
 ----
-
-
-The Marine Ecosystem Dynamics introduction to R slides and the tutorial are avaiable in the [MATERIAL](program.html) tab.
-
-
+<img src="assets/images/background.png" width="100%"/>
