@@ -21,7 +21,7 @@ website:
       - href: program.html
         text: MATERIAL
       - icon: "github"
-        href: "https://github.com/KMGJan"
+        href: "https://github.com/KMGJan/MED"
         target: "_blank"
       - icon: envelope
         href: mailto:kinlan.jan@su.se

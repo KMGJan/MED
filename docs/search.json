@@ -11,14 +11,14 @@
     "href": "program.html",
     "title": "Material",
     "section": "",
-    "text": "Date\nTopic\n\n\n\n\n\n\n02-Sep-2023 (Saturday)\nIntroduction to R\nSlides\nTutorial\n\n\n03-Sep-2023 (Sunday)\nData manipulation and visualisation\nSlides\nTutorial"
+    "text": "Material\n\n\n\n\n\n02-Sep-2023 (Saturday)\nIntroduction to R\nSlides\nTutorial\n\n\n03-Sep-2023 (Sunday)\nData manipulation and visualisation\nSlides\nTutorial"
   },
   {
     "objectID": "about.html",
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "During this introduction course, we will learn the basics of R and how to manipulate data.\nThroughout this introduction, we will learn how to use  in .\nThis introduction covers:\n\n\n\nR syntax\n\nR as a calculator\nVariables in R\nFunctions\n\nData import using readr\nPipe the data using magrittr\nTidy the data using tidyr\nArrange the data using dplyr\nVisualise the data using ggplot2\n\nThe data we will use are all gathered in the package PlanktonData\n\n\n\n\n\nInstall R and R studio before the start of the course !"
+    "text": "During this introduction course, we will learn the basics of R and how to manipulate data.\nThroughout this introduction, we will learn how to use  in .\nThis introduction covers:\n\n\n\nR syntax\nData import using readr\nPipe the data using magrittr\nTidy the data using tidyr\nArrange the data using dplyr\nVisualise the data using ggplot2\n\nThe data we will use are all gathered in the package PlanktonData\n\n\n\n\n\nInstall R and R studio before the start of the course !"
   },
   {
     "objectID": "slides/Part1/index.html#plan-for-todays-lecture",

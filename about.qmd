@@ -31,9 +31,6 @@ This introduction covers:
 ::: {.column width="\"60%"}
 
 - R syntax
-  + R as a calculator
-  + Variables in R
-  + Functions
 - Data import using [`readr`](https://readr.tidyverse.org/){target="_blank"}
 - Pipe the data using [`magrittr`](https://magrittr.tidyverse.org/){target="_blank"}
 - Tidy the data using [`tidyr`](https://tidyr.tidyverse.org/){target="_blank"}
