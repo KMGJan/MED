@@ -16,7 +16,7 @@ toc: false
 
 |Date                                      | Topic                                  |                             |                              |
 |------------------------------------------|----------------------------------------|------------------------------------|---------------------------------------|
-|[**02-Sep-2023 (Saturday)**]{.highlight}  | Introduction to R                      | [Slides](slides/Part1/index.html)  | [Tutorial](tutorial/Part1/index.html) |
-|[**03-Sep-2023 (Sunday)**]{.highlight}    | Data manipulation and visualisation    | [Slides](slides/Part2/index.html)  | [Tutorial](tutorial/Part2/index.html)|
+|[**02-Sep-2023 (Saturday)**]{.highlight}  | Introduction to R                      | [Slides](slides/Part1/index.html){target="_blank"}  | [Tutorial](tutorial/Part1/index.html){target="_blank"} |
+|[**03-Sep-2023 (Sunday)**]{.highlight}    | Data manipulation and visualisation    | [Slides](slides/Part2/index.html){target="_blank"}  | [Tutorial](tutorial/Part2/index.html){target="_blank"}|
 
 :::

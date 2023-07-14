@@ -13,6 +13,7 @@ format:
     show-slide-number: all
     chalkboard: true
     logo: "../../assets/images/SU_logo.png"
+
 knitr:
   opts_chunk:
     echo: true
@@ -105,6 +106,7 @@ library(PackageName)
 
 ::: columns
 ::: {.column width="60%"}
+
 ### R as a calculator
 
 -   R can resolve "basic" operation
@@ -117,6 +119,8 @@ library(PackageName)
 3 * 4
 (5 + 2) * (4 - 1)
 ```
+
+
 
 -   And more complex operation
 

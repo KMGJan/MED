@@ -22,17 +22,19 @@ website:
         text: MATERIAL
       - icon: "github"
         href: "https://github.com/KMGJan"
+        target: "_blank"
       - icon: envelope
         href: mailto:kinlan.jan@su.se
   page-footer:
     border: true
     left: "![](assets/images/SU_black.svg){height=2.5em style=margin-bottom:-1px;}"
-    center: "Marine Ecosystem Dynamics [2023](about.html) | [Lab group](https://winderlab.com/)"
-    right: "Published with [Quarto](https://quarto.org/)"
+    center: "Marine Ecosystem Dynamics [2023](about.html) | [Lab group](https://winderlab.com/){target=_blank}"
+    right: "Published with [Quarto](https://quarto.org/){target=_blank}"
 
 
 format:
   html:
     theme: cosmo
     css: styles.css
-    toc: true 
+    toc: true
+    self-contained: true

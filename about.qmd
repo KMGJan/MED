@@ -21,17 +21,17 @@ This introduction covers:
   + R as a calculator
   + Variables in R
   + Functions
-- Data import using [`readr`](https://readr.tidyverse.org/)
-- Pipe the data using [`magrittr`](https://magrittr.tidyverse.org/)
-- Tidy the data using [`tidyr`](https://tidyr.tidyverse.org/)
-- Arrange the data using [`dplyr`](https://dplyr.tidyverse.org/)
-- Visualise the data using [`ggplot2`](https://ggplot2.tidyverse.org/)
+- Data import using [`readr`](https://readr.tidyverse.org/){target="_blank"}
+- Pipe the data using [`magrittr`](https://magrittr.tidyverse.org/){target="_blank"}
+- Tidy the data using [`tidyr`](https://tidyr.tidyverse.org/){target="_blank"}
+- Arrange the data using [`dplyr`](https://dplyr.tidyverse.org/){target="_blank"}
+- Visualise the data using [`ggplot2`](https://ggplot2.tidyverse.org/){target="_blank"}
 
 
 
-The data we will use are all gathered in the package [`PlanktonData`](https://kmgjan.github.io/PlanktonData/)
+The data we will use are all gathered in the package [`PlanktonData`](https://kmgjan.github.io/PlanktonData/){target="_blank"}
 
 ----
 
-Install [R](https://ftp.acc.umu.se/mirror/CRAN/) and [R studio](https://posit.co/download/rstudio-desktop/) before the start of the course !
+Install [R](https://ftp.acc.umu.se/mirror/CRAN/){target="_blank"} and [R studio](https://posit.co/download/rstudio-desktop/){target="_blank"} before the start of the course !
 
