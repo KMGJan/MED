@@ -11,11 +11,18 @@ toc: false
   
 </style>
 
+
+
 During this introduction course, we will learn the basics of R and how to manipulate data.
 
 Throughout this introduction, we will learn how to use ![](./assets/images/Rlogo.svg){height=1.5em style=margin-bottom;} in ![](./assets/images/RSTUDIO.png){height=1.5em style=margin-bottom;}.
 
+
+
 This introduction covers:
+
+::: columns
+::: {.column width="\"60%"}
 
 - R syntax
   + R as a calculator
@@ -30,6 +37,12 @@ This introduction covers:
 
 
 The data we will use are all gathered in the package [`PlanktonData`](https://kmgjan.github.io/PlanktonData/){target="_blank"}
+:::
+
+::: {.column width="\"40%"}
+<img src="assets/images/background2.png" width="100%" style="object-fit: cover; object-position: center center;">
+:::
+:::
 
 ----
 
