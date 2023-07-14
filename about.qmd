@@ -1,7 +1,15 @@
 ---
 title: "About"
+toc: false
 ---
-
+<style>
+  body {
+  background-image: url("assets/images/background4.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+  
+</style>
 During this tutorial we will see the basics of R and how to handle some data.
 
 To do so, we will use several packages such as:

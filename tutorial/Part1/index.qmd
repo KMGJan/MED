@@ -493,13 +493,32 @@ str(df)
 
 -   Import and inspect the dataset `zooplankton_seasonality.csv`
 
+```{r}
+#| echo: false
+#| eval: true
+#| warning: false
+#| message: false
+library("downloadthis");library(PlanktonData)
+data(zooplankton)
+zooplankton  |> 
+  download_this(
+    output_name = "zooplankton_seasonality",
+    output_extension = ".csv",
+    button_label = "Download zooplankton_seasonality.csv",
+    button_type = "success",
+    has_icon = TRUE,
+    icon = "fa fa-save")
+
+```
+
+
 ::: {.callout-note collapse="true" title="Solution" appearance="simple"}
 
-```{r}
+```{r, data-1}
 #| echo: true
-#| eval: true
+#| eval: false
 #| output: false
-plankton_seasonality <- read_csv("/Users/kinlan/OneDrive - Stockholm University/PhD/Teaching/MarineEcosystemDynamics2023/Tutorial/Data/zooplankton_seasonality.csv")
+plankton_seasonality <- read_csv("./../../assets/data/zooplankton_seasonality.csv")
 str(plankton_seasonality)
 ```
 or
@@ -510,6 +529,12 @@ setwd("/Users/kinlan/OneDrive - Stockholm University/PhD/Teaching/MarineEcosyste
 plankton_seasonality <- read_csv("./Data/zooplankton_seasonality.csv")
 str(plankton_seasonality)
 ```
+```{r,data-1}
+#| echo: false
+#| eval: true
+#| output: true
+```
+
 :::
 
 ::: {.callout-tip collapse="true"}

@@ -6,15 +6,28 @@ project:
   
 
 website:
-  title: "Marine Ecosystem Dynamics 2023"
+  title: "Marine Ecosystem Dynamics - 2023"
+  favicon: assets/images/favicon.svg
   navbar:
-    left:
+    alignment: center
+    background: light
+    border: true
+    logo: assets/images/logo.png
+    right:
       - href: index.html
-        text: Home
+        text: HOME
       - href: about.html
-        text: About
+        text: ABOUT
       - href: program.html
-        text: Program
+        text: MATERIAL
+      - icon: "github"
+        href: "https://github.com/KMGJan"
+  page-footer:
+    border: true
+    left: "![](assets/images/SU_black.svg){height=2.5em style=margin-bottom:-1px;}"
+    center: "Marine Ecosystem Dynamics [2023](about.html) | [Lab group](https://winderlab.com/)"
+    right: "Published with [Quarto](https://quarto.org/)"
+
 
 format:
   html:
