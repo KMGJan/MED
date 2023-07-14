@@ -22,6 +22,8 @@ website:
         text: MATERIAL
       - icon: "github"
         href: "https://github.com/KMGJan"
+      - icon: envelope
+        href: mailto:kinlan.jan@su.se
   page-footer:
     border: true
     left: "![](assets/images/SU_black.svg){height=2.5em style=margin-bottom:-1px;}"

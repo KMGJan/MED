@@ -34,3 +34,4 @@ The data we will use are all gathered in the package [`PlanktonData`](https://km
 ----
 
 Install [R](https://ftp.acc.umu.se/mirror/CRAN/) and [R studio](https://posit.co/download/rstudio-desktop/) before the start of the course !
+
