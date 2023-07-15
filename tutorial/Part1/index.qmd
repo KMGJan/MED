@@ -568,3 +568,70 @@ ncol(plankton_seasonality)
 write_csv(df, file = "./Data/df.csv")
 ```
 :::
+
+::: {.callout title="Optional exercises"}
+-   Import the dataset `phytoplankton_seasonality` available [here](https://github.com/KMGJan/MED/blob/main/assets/data/phytoplankton_seasonality.txt){target="_blank"} using `readr`
+
+::: {.callout-tip collapse="true" title="Hint"}
+This time it is a .txt file and not a .csv file
+:::
+::: {.callout-tip collapse="true" title="Hint"}
+This file is separated by tabs. In **R** tabs are written as `\t`
+:::
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+phytoplankton_df <- read_delim("./../../assets/data/phytoplankton_seasonality.txt", delim = "\t") |> 
+  as_tibble()
+str(phytoplankton_df)
+```
+:::
+
+-   What is the 4th column of this dataset?
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+phytoplankton_df[4]
+```
+:::
+
+-   What are the values of this 4th column?
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+phytoplankton_df[[4]] |> 
+  unique()
+```
+:::
+
+- How many observations are in this dataset?
+
+::: {.callout-note collapse="true" title="Solution" appearance="simple"}
+```{r}
+#| echo: true
+#| eval: true
+nrow(phytoplankton_df)
+```
+:::
+
+:::
+
+::: {.callout-tip}
+The decimal operator is not the same depending on the countries. For example in Sweden the default decimal operator is `,` but often the default decimal operator is `.`
+
+It might therefore be important to change this setting when loading a dataset. This can be achieved using the `locale` function in the `read_*` function!
+```{r}
+#| echo: true
+#| eval: false
+read_delim(file = ...,
+           delim = ";",
+           locale = locale(decimal_mark = ","))
+```
+:::
+

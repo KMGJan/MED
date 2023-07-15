@@ -1,3 +1,29 @@
+quarto:
+  document_scripts:
+    - >
+      <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        // Add event listeners to download links
+        var csvLink = document.getElementById("csv-link");
+        csvLink.addEventListener("click", function() {
+          downloadFile(csvLink.href, "Exercise_1.csv");
+        });
+
+        var txtLink = document.getElementById("txt-link");
+        txtLink.addEventListener("click", function() {
+          downloadFile(txtLink.href, "zooplankton_seasonality.csv");
+        });
+
+        // Function to initiate file download
+        function downloadFile(url, filename) {
+          var link = document.createElement("a");
+          link.href = url;
+          link.download = filename;
+          link.click();
+        }
+      });
+      </script>
+      
 project:
   type: website
   output-dir: docs
@@ -25,6 +51,7 @@ website:
         target: "_blank"
       - icon: envelope
         href: mailto:kinlan.jan@su.se
+        
   page-footer:
     border: false
     left: "![](assets/images/SU_black.svg){height=2.5em style=margin-bottom:-1px;}"
