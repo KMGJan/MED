@@ -642,32 +642,32 @@ Kinlan Jan, Baptiste Serandour
 <section id="example" class="slide level2">
 <h2>Example</h2>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="1|2|3|4|5,6,7,8,9,10,11,12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">library</span>(readr)</span>
+<div class="sourceCode cell-code" id="cb14" data-code-line-numbers="1|2|3|4|5,6,7,8,9,10,11,12,13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">library</span>(readr)</span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
 <span id="cb14-3"><a href="#cb14-3"></a>Example_1 <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">"./../../assets/data/Example_1.csv"</span>) </span>
 <span id="cb14-4"><a href="#cb14-4"></a><span class="fu">head</span>(Example_1)</span>
 <span id="cb14-5"><a href="#cb14-5"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
-<span id="cb14-6"><a href="#cb14-6"></a><span class="co">#&gt;   Month Genus         Abundance</span></span>
-<span id="cb14-7"><a href="#cb14-7"></a><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;</span></span>
-<span id="cb14-8"><a href="#cb14-8"></a><span class="co">#&gt; 1 Dec   Centropages      -0.552</span></span>
-<span id="cb14-9"><a href="#cb14-9"></a><span class="co">#&gt; 2 Apr   Centropages      12.5  </span></span>
-<span id="cb14-10"><a href="#cb14-10"></a><span class="co">#&gt; 3 Feb   Centropages      18.4  </span></span>
-<span id="cb14-11"><a href="#cb14-11"></a><span class="co">#&gt; 4 Sep   Acartia          25.6  </span></span>
-<span id="cb14-12"><a href="#cb14-12"></a><span class="co">#&gt; 5 Mar   Pseudocalanus     9.70 </span></span>
-<span id="cb14-13"><a href="#cb14-13"></a><span class="co">#&gt; 6 Jul   Temora            8.90</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="co">#&gt;   Month Genus       Abundance</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt;</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="co">#&gt; 1 Mar   Centropages     11.8 </span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="co">#&gt; 2 Mar   Centropages     18.7 </span></span>
+<span id="cb14-10"><a href="#cb14-10"></a><span class="co">#&gt; 3 Oct   Centropages     16.4 </span></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="co">#&gt; 4 Feb   Temora           5.87</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="co">#&gt; 5 Jun   Centropages     10.8 </span></span>
+<span id="cb14-13"><a href="#cb14-13"></a><span class="co">#&gt; 6 Nov   Acartia         17.9</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">tail</span>(Example_1)</span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="co">#&gt; # A tibble: 6 × 3</span></span>
-<span id="cb15-3"><a href="#cb15-3"></a><span class="co">#&gt;   Month Genus         Abundance</span></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;</span></span>
-<span id="cb15-5"><a href="#cb15-5"></a><span class="co">#&gt; 1 Jan   Pseudocalanus     22.7 </span></span>
-<span id="cb15-6"><a href="#cb15-6"></a><span class="co">#&gt; 2 Feb   Acartia           27.6 </span></span>
-<span id="cb15-7"><a href="#cb15-7"></a><span class="co">#&gt; 3 Aug   Acartia            7.75</span></span>
-<span id="cb15-8"><a href="#cb15-8"></a><span class="co">#&gt; 4 Jan   Centropages       17.0 </span></span>
-<span id="cb15-9"><a href="#cb15-9"></a><span class="co">#&gt; 5 Feb   Centropages        5.95</span></span>
-<span id="cb15-10"><a href="#cb15-10"></a><span class="co">#&gt; 6 Aug   Temora            17.2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="co">#&gt;   Month Genus   Abundance</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a><span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="co">#&gt; 1 Aug   Temora       16.2</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a><span class="co">#&gt; 2 Mar   Acartia      11.8</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="co">#&gt; 3 Oct   Acartia      14.7</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a><span class="co">#&gt; 4 Feb   Acartia      18.1</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a><span class="co">#&gt; 5 Oct   Acartia      10.6</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a><span class="co">#&gt; 6 Dec   Temora       12.4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>

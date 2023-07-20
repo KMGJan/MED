@@ -256,11 +256,22 @@ class(vector_3)
 ![](../../assets/images/readr.png){fig-align="center"}
 
 ## Example
+```{r}
+#| eval: true
+#| echo: false
+library(readr)
+set.seed(123)
+tibble::tibble(Month = sample(month.abb, 100, replace = TRUE),
+       Genus = sample(c("Acartia", "Centropages", "Temora"), 100, replace = TRUE),
+       Abundance = sample(seq(1,20,0.001), 100)) |> 
+  readr::write_csv("./../../assets/data/Example_1.csv") 
+
+```
 
 ```{r}
 #| eval: true
 #| echo: true
-#| code-line-numbers: 1|2|3|4|5,6,7,8,9,10,11,12
+#| code-line-numbers: 1|2|3|4|5,6,7,8,9,10,11,12,13
 library(readr)
 
 Example_1 <- readr::read_csv("./../../assets/data/Example_1.csv") 
