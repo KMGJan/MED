@@ -60,7 +60,7 @@
     "href": "slides/Part1/index.html#variables",
     "title": "Introduction to R",
     "section": "Variables",
-    "text": "Variables\nVariables in R can be of several types :\n\nLogical: TRUE or FALSE\nNumeric: 3.1 or 4\nCharacter: Example\n\n\nvariable_1 &lt;- 4.3\nvariable_2 &lt;- c(1, 2, 3)\nvariable_3 &lt;- \"text\"\n\n\n\n\n\n\n\n\nAssigning the same value for multiple variable\n\n\n\nvariable_4 &lt;- variable_5 &lt;- variable_6 &lt;- \"Value\""
+    "text": "Variables\nVariables in R can be of several types :\n\nLogical: TRUE or FALSE\nNumeric: 3.1 or 4\nCharacter: Example\n\n\nvariable_1 &lt;- 4.3\nvariable_2 &lt;- c(1, 2, 3)\nvariable_3 &lt;- \"text\""
   },
   {
     "objectID": "slides/Part1/index.html#functions",
@@ -74,14 +74,14 @@
     "href": "slides/Part1/index.html#if-you-want-to-go-a-step-further",
     "title": "Introduction to R",
     "section": "If you want to go a step further",
-    "text": "If you want to go a step further\n\nYou can define your own functions:\n\n\nmy_addition &lt;- function(parameter_1, parameter_2, ...){\n  parameter_1 + parameter_2\n}\n\n\nAnd compare if this is equal to the base R functions:\n\n\nmy_addition(parameter_1 = 1, parameter_2 = 2) == 1 + 2\n#&gt; [1] TRUE\n\n\nNote the logical operations are written as follow:\n\nis equal: ==\nis different: !="
+    "text": "If you want to go a step further\n\nYou can define your own functions:\n\n\nmy_addition &lt;- function(parameter_1, parameter_2, ...){\n  parameter_1 + parameter_2\n}\n\n\n\nAnd compare if this is equal to the base R functions:\n\n\nmy_addition(parameter_1 = 1, parameter_2 = 2) == 1 + 2\n#&gt; [1] TRUE\n\n\nNote the logical operations are written as follow:\n\nis equal: ==\nis different: !="
   },
   {
     "objectID": "slides/Part1/index.html#vectors",
     "href": "slides/Part1/index.html#vectors",
     "title": "Introduction to R",
     "section": "Vectors",
-    "text": "Vectors\n\nVectors can be created using different functions\n\n\n(vector_1 &lt;- c(1, 3, 6))\n#&gt; [1] 1 3 6\n(vector_2 &lt;- seq(from = 2, to = 10, by = 3))\n#&gt; [1] 2 5 8\n(vector_3 &lt;- rep(\"Yellow\", 3))\n#&gt; [1] \"Yellow\" \"Yellow\" \"Yellow\"\n(vector_4 &lt;- c(vector_1, vector_2))\n#&gt; [1] 1 3 6 2 5 8\n\n\nR works with vectors from which we can do our calculation\n\n\nvector_1 * 2\n#&gt; [1]  2  6 12\nmean(vector_4)\n#&gt; [1] 4.166667\nclass(vector_3)\n#&gt; [1] \"character\""
+    "text": "Vectors\n\nVectors can be created using different functions\n\n\n(vector_1 &lt;- c(1, 3, 6))\n#&gt; [1] 1 3 6\n(vector_2 &lt;- seq(from = 2, to = 10, by = 3))\n#&gt; [1] 2 5 8\n(vector_3 &lt;- rep(\"Yellow\", 3))\n#&gt; [1] \"Yellow\" \"Yellow\" \"Yellow\"\n(vector_4 &lt;- c(vector_1, vector_2))\n#&gt; [1] 1 3 6 2 5 8\n\n\n\nR works with vectors from which we can do our calculation\n\n\nvector_1 * 2\n#&gt; [1]  2  6 12\nmean(vector_4)\n#&gt; [1] 4.166667\nclass(vector_3)\n#&gt; [1] \"character\""
   },
   {
     "objectID": "slides/Part1/index.html#importing-data",
@@ -95,7 +95,7 @@
     "href": "slides/Part1/index.html#example",
     "title": "Introduction to R",
     "section": "Example",
-    "text": "Example\n\nlibrary(readr)\n\nExample_1 &lt;- readr::read_csv(\"./../../assets/data/Example_1.csv\") \nhead(Example_1)\n#&gt; # A tibble: 6 × 3\n#&gt;   Month Genus       Abundance\n#&gt;   &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt;\n#&gt; 1 Mar   Centropages     11.8 \n#&gt; 2 Mar   Centropages     18.7 \n#&gt; 3 Oct   Centropages     16.4 \n#&gt; 4 Feb   Temora           5.87\n#&gt; 5 Jun   Centropages     10.8 \n#&gt; 6 Nov   Acartia         17.9\n\n\n\ntail(Example_1)\n#&gt; # A tibble: 6 × 3\n#&gt;   Month Genus   Abundance\n#&gt;   &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt;\n#&gt; 1 Aug   Temora       16.2\n#&gt; 2 Mar   Acartia      11.8\n#&gt; 3 Oct   Acartia      14.7\n#&gt; 4 Feb   Acartia      18.1\n#&gt; 5 Oct   Acartia      10.6\n#&gt; 6 Dec   Temora       12.4"
+    "text": "Example\n\nlibrary(readr)\n\nExample_1 &lt;- readr::read_csv(\"./../../assets/data/Example_1.csv\") \nhead(Example_1)\n#&gt; # A tibble: 6 × 3\n#&gt;   Month Genus         Abundance\n#&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;\n#&gt; 1 Dec   Centropages      -0.552\n#&gt; 2 Apr   Centropages      12.5  \n#&gt; 3 Feb   Centropages      18.4  \n#&gt; 4 Sep   Acartia          25.6  \n#&gt; 5 Mar   Pseudocalanus     9.70 \n#&gt; 6 Jul   Temora            8.90\n\n\n\ntail(Example_1)\n#&gt; # A tibble: 6 × 3\n#&gt;   Month Genus         Abundance\n#&gt;   &lt;chr&gt; &lt;chr&gt;             &lt;dbl&gt;\n#&gt; 1 Jan   Pseudocalanus     22.7 \n#&gt; 2 Feb   Acartia           27.6 \n#&gt; 3 Aug   Acartia            7.75\n#&gt; 4 Jan   Centropages       17.0 \n#&gt; 5 Feb   Centropages        5.95\n#&gt; 6 Aug   Temora            17.2"
   },
   {
     "objectID": "slides/Part1/index.html#plan-for-tomorrow",
@@ -312,7 +312,7 @@
     "href": "tutorial/Part1/index.html#r-syntax",
     "title": "TutoRial - Part 1",
     "section": "R syntax",
-    "text": "R syntax\nR is a programming language that use a simplified syntax. In this section, you will explore how to write a script and execute it.\nBut first some syntax information:\n\nEverything after # is considered as a command and will not be executed. It is very important to write what we are doing, so we do not get lost next time we open our scripts.\n\n\n# 2 + 2 will not work because of the #\n2 + 2 # We should then annotate our script like this\n#&gt; [1] 4\n\n\nSeveral lines of code can be written in one line but must be separated by\n\n\n2 + 2\n#&gt; [1] 4\n3 * 2\n#&gt; [1] 6\n\n# This can also be written as follow:\n2 + 2 ; 3 * 2\n#&gt; [1] 4\n#&gt; [1] 6\n\n\nIn R we can name a function, vector, or other object using = or &lt;-\n\n\nmy_vector &lt;- c(1, 2, 3, 4)\nmy_function = function(x){x + 2}\n\n\n== is a logical function that can be translated as is equal to, contrarily is not equal to is written !=\n\n\n2 + 2 == 4\n#&gt; [1] TRUE\n3 * 2 == 4\n#&gt; [1] FALSE\n3 * 2 != 4\n#&gt; [1] TRUE\n\n\nExercises\n\nDo these calculations in a new R script\n\n\n\\ 2^7\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n2^7\n#&gt; [1] 128\n\n\n\n\n\n\\ cos(\\pi)\n\n\n\n\n\n\n\nHint\n\n\n\n\n\n\n?cos()\n?pi()\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ncos(pi)\n#&gt; [1] -1\n\n\n\n\n\n\\ \\sum_{1}^{100} i\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nOperations can take place for an entire vector\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nvector &lt;- seq(from = 1, to = 100, by = 1) # Create a vector from 1 to 100\nsum(vector) # Calculate the sum\n#&gt; [1] 5050\n\n\n\n\n\nCreate a parameter x1 that equals to 5 and a parameter x2 that equals to 10\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nx1 &lt;- 5 ; x2 &lt;-  10\n\n\n\n\n\nIs 2x1 equivalent to x2?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n2*x1 == x2\n#&gt; [1] TRUE"
+    "text": "R syntax\nR is a programming language that use a simplified syntax. In this section, you will explore how to write a script and execute it.\nBut first some syntax information:\n\nEverything after # is considered as a command and will not be executed. It is very important to write what we are doing, so we do not get lost next time we open our scripts.\n\n\n# 2 + 2 will not work because of the #\n2 + 2 # We should then annotate our script like this\n#&gt; [1] 4\n\n\nSeveral lines of code can be written in one line but must be separated by\n\n\n2 + 2\n#&gt; [1] 4\n3 * 2\n#&gt; [1] 6\n\n# This can also be written as follow:\n2 + 2 ; 3 * 2\n#&gt; [1] 4\n#&gt; [1] 6\n\n\nIn R we can name a function, vector, or other object using =, &lt;-, -&gt; or assign\n\n\nc(1, 2, 3, 4) -&gt; my_first_vector\nmy_vector &lt;- c(1, 2, 3, 4)\nmy_function = function(x){x + 2}\nassign(\"x\", c(2, 3, 4, 5))\n\n\n== is a logical function that can be translated as is equal to, contrarily is not equal to is written !=\n\n\n2 + 2 == 4\n#&gt; [1] TRUE\n3 * 2 == 4\n#&gt; [1] FALSE\n3 * 2 != 4\n#&gt; [1] TRUE\n\n\nExercises\n\nDo these calculations in a new R script\n\n\n\\ 2^7\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n2^7\n#&gt; [1] 128\n\n\n\n\n\n\\ cos(\\pi)\n\n\n\n\n\n\n\nHint\n\n\n\n\n\n\n?cos()\n?pi()\n\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\ncos(pi)\n#&gt; [1] -1\n\n\n\n\n\n\\ \\sum_{1}^{100} i\n\n\n\n\n\n\n\nHint\n\n\n\n\n\nOperations can take place for an entire vector\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nvector &lt;- seq(from = 1, to = 100, by = 1) # Create a vector from 1 to 100\nsum(vector) # Calculate the sum\n#&gt; [1] 5050\n\n\n\n\n\nCreate a parameter x1 that equals to 5 and a parameter x2 that equals to 10\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\nx1 &lt;- 5 ; x2 &lt;-  10\n\n\n\n\n\nIs 2x1 equivalent to x2?\n\n\n\n\n\n\n\nSolution\n\n\n\n\n\n\n2*x1 == x2\n#&gt; [1] TRUE"
   },
   {
     "objectID": "tutorial/Part1/index.html#functions",
@@ -446,5 +446,12 @@
     "title": "About",
     "section": "To do before the course",
     "text": "To do before the course"
+  },
+  {
+    "objectID": "slides/Part1/index.html#section-1",
+    "href": "slides/Part1/index.html#section-1",
+    "title": "Introduction to R",
+    "section": "",
+    "text": "To assign a value to a variable, several options exist\n\n&lt;- e.g. a &lt;- 2\n-&gt; e.g. 2 -&gt; a\nassign() e.g. assign(\"a\", 2)\n= e.g. a = 2\n\n\nAssigning the same value for multiple variable\n\nvariable_4 &lt;- variable_5 &lt;- variable_6 &lt;- \"Value\""
   }
 ]

@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "MEDWebsite",
+    "section": "",
+    "text": "On this website, the slides and the tutorial can be found for the Marine Ecosystem Dynamics introduction to R.\nWe will have a brief overview on some possibilities that R offers"
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "program.html",
+    "href": "program.html",
+    "title": "Program",
+    "section": "",
+    "text": "This is the program"
+  }
+]
