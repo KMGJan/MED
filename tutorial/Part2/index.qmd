@@ -104,7 +104,7 @@ To reach the tidy concept, we can use 4 key functions:
 
 ### Exercises
 
-From this point onwards, we will use the datasets available in the package [PlanktonData](https://kmgjan.github.io/PlanktonData/). All the raw data come from [SHARKweb](https://sharkweb.smhi.se/hamta-data/).
+From this point onwards, we will use the datasets available in the package [PlanktonData](https://kmgjan.github.io/PlanktonData/){target="_blank"}. All the raw data come from [SHARKweb](https://sharkweb.smhi.se/hamta-data/){target="_blank"}.
 
 -   Install `devtools` and then `PlanktonData`.
 
