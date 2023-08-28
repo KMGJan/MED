@@ -30,7 +30,7 @@ website:
   page-footer:
     border: false
     left: "![](assets/images/SU_black.svg){height=2.5em style=margin-bottom:-1px;}"
-    center: "Marine Ecosystem Dynamics [2023](about.html) | [Lab group](https://winderlab.com/){target=_blank}"
+    center: "Marine Ecosystem Dynamics [2023](https://kmgjan.github.io/MED/about.html) | [Athena](https://athena.itslearning.com/){target=_blank}"
     right: "Published with [Quarto](https://quarto.org/){target=_blank}"
 
 
