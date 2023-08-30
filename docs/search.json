@@ -453,5 +453,12 @@
     "title": "Introduction to R",
     "section": "",
     "text": "To assign a value to a variable, several options exist\n\n&lt;- e.g. a &lt;- 2\n-&gt; e.g. 2 -&gt; a\nassign() e.g. assign(\"a\", 2)\n= e.g. a = 2\n\n\nAssigning the same value for multiple variable\n\nvariable_4 &lt;- variable_5 &lt;- variable_6 &lt;- \"Value\""
+  },
+  {
+    "objectID": "shiny/app.html",
+    "href": "shiny/app.html",
+    "title": "Old Faithful",
+    "section": "",
+    "text": "Number of bins:"
   }
 ]

@@ -156,7 +156,7 @@ variable_3 <- "text"
 ```
 
 
-##
+## {visibility="hidden"}
 
 To assign a value to a variable, several options exist
 
