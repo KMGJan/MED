@@ -39,7 +39,7 @@ This introduction covers:
 
 
 
-The data we will use are all gathered in the package [`PlanktonData`](https://kmgjan.github.io/PlanktonData/){target="_blank"}
+The data we will use are all available in the package [`PlanktonData`](https://kmgjan.github.io/PlanktonData/){target="_blank"}
 :::
 
 ::: {.column width="\"40%"}
