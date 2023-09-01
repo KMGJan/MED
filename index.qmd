@@ -24,4 +24,4 @@ toc: false
 ##### 02-03 September 2023, Askö, Sweden.
 
 ----
-<img src="assets/images/background_2.png" width="100%"/>
+<img src="assets/images/background4.jpeg" width="100%"/>
