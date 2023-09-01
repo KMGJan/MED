@@ -49,5 +49,5 @@ The data we will use are all available in the package [`PlanktonData`](https://k
 
 ----
 
-Install [R](https://ftp.acc.umu.se/mirror/CRAN/){target="_blank"} and [R studio](https://posit.co/download/rstudio-desktop/){target="_blank"} before the start of the course !
+Install [R](https://ftp.acc.umu.se/mirror/CRAN/){target="_blank"} and [R studio](https://posit.co/download/rstudio-desktop/){target="_blank"} before the start of the lecture !
 
