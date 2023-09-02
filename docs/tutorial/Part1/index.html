@@ -5982,22 +5982,31 @@ Solution
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(plankton_seasonality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<pre><code>#&gt; Warning: One or more parsing issues, call `problems()` on your data frame for details,
-#&gt; e.g.:
-#&gt;   dat &lt;- vroom(...)
-#&gt;   problems(dat)
-#&gt; Rows: 2956 Columns: 1
+<pre><code>#&gt; Rows: 2956 Columns: 7
 #&gt; ── Column specification ────────────────────────────────────────────────────────
 #&gt; Delimiter: &quot;,&quot;
-#&gt; chr (1): Month_abb;Year;Station;Coordinates;Group;Taxa;Biomass
+#&gt; chr (5): Month_abb, Station, Coordinates, Group, Taxa
+#&gt; dbl (2): Year, Biomass
 #&gt; 
 #&gt; ℹ Use `spec()` to retrieve the full column specification for this data.
 #&gt; ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
-#&gt; spc_tbl_ [2,956 × 1] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
-#&gt;  $ Month_abb;Year;Station;Coordinates;Group;Taxa;Biomass: chr [1:2956] &quot;Jan;2009;BY15;20.05000/57.33333;Copepoda;Acartia;6,650318700000000&quot; &quot;Jan;2009;BY31;18.23333/58.58812;Copepoda;Acartia;1,816994100000000&quot; &quot;Jan;2009;BY5;15.98333/55.25000;Copepoda;Acartia;5,562097450000000&quot; &quot;Jan;2009;BY15;20.05000/57.33333;Copepoda;Centropages;5,738561499999999&quot; ...
+#&gt; spc_tbl_ [2,956 × 7] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+#&gt;  $ Month_abb  : chr [1:2956] &quot;Jan&quot; &quot;Jan&quot; &quot;Jan&quot; &quot;Jan&quot; ...
+#&gt;  $ Year       : num [1:2956] 2009 2009 2009 2009 2009 ...
+#&gt;  $ Station    : chr [1:2956] &quot;BY15&quot; &quot;BY31&quot; &quot;BY5&quot; &quot;BY15&quot; ...
+#&gt;  $ Coordinates: chr [1:2956] &quot;20.05000/57.33333&quot; &quot;18.23333/58.58812&quot; &quot;15.98333/55.25000&quot; &quot;20.05000/57.33333&quot; ...
+#&gt;  $ Group      : chr [1:2956] &quot;Copepoda&quot; &quot;Copepoda&quot; &quot;Copepoda&quot; &quot;Copepoda&quot; ...
+#&gt;  $ Taxa       : chr [1:2956] &quot;Acartia&quot; &quot;Acartia&quot; &quot;Acartia&quot; &quot;Centropages&quot; ...
+#&gt;  $ Biomass    : num [1:2956] 6.65 1.82 5.56 5.74 1.23 ...
 #&gt;  - attr(*, &quot;spec&quot;)=
 #&gt;   .. cols(
-#&gt;   ..   `Month_abb;Year;Station;Coordinates;Group;Taxa;Biomass` = col_character()
+#&gt;   ..   Month_abb = col_character(),
+#&gt;   ..   Year = col_double(),
+#&gt;   ..   Station = col_character(),
+#&gt;   ..   Coordinates = col_character(),
+#&gt;   ..   Group = col_character(),
+#&gt;   ..   Taxa = col_character(),
+#&gt;   ..   Biomass = col_double()
 #&gt;   .. )
 #&gt;  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
 </div>
@@ -6020,8 +6029,14 @@ Tip
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>plankton_seasonality <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(plankton_seasonality)</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(plankton_seasonality)</span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tibble [2,956 × 1] (S3: tbl_df/tbl/data.frame)</span></span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Month_abb;Year;Station;Coordinates;Group;Taxa;Biomass: chr [1:2956] &quot;Jan;2009;BY15;20.05000/57.33333;Copepoda;Acartia;6,650318700000000&quot; &quot;Jan;2009;BY31;18.23333/58.58812;Copepoda;Acartia;1,816994100000000&quot; &quot;Jan;2009;BY5;15.98333/55.25000;Copepoda;Acartia;5,562097450000000&quot; &quot;Jan;2009;BY15;20.05000/57.33333;Copepoda;Centropages;5,738561499999999&quot; ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; tibble [2,956 × 7] (S3: tbl_df/tbl/data.frame)</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Month_abb  : chr [1:2956] &quot;Jan&quot; &quot;Jan&quot; &quot;Jan&quot; &quot;Jan&quot; ...</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Year       : num [1:2956] 2009 2009 2009 2009 2009 ...</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Station    : chr [1:2956] &quot;BY15&quot; &quot;BY31&quot; &quot;BY5&quot; &quot;BY15&quot; ...</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Coordinates: chr [1:2956] &quot;20.05000/57.33333&quot; &quot;18.23333/58.58812&quot; &quot;15.98333/55.25000&quot; &quot;20.05000/57.33333&quot; ...</span></span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Group      : chr [1:2956] &quot;Copepoda&quot; &quot;Copepoda&quot; &quot;Copepoda&quot; &quot;Copepoda&quot; ...</span></span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Taxa       : chr [1:2956] &quot;Acartia&quot; &quot;Acartia&quot; &quot;Acartia&quot; &quot;Centropages&quot; ...</span></span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  $ Biomass    : num [1:2956] 6.65 1.82 5.56 5.74 1.23 ...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -6045,7 +6060,7 @@ Solution
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(plankton_seasonality)</span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 2956</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(plankton_seasonality)</span>
-<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 7</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>

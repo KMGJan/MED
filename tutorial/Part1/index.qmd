@@ -516,7 +516,7 @@ zooplankton  |>
 
 ::: {.callout-note collapse="true" title="Solution" appearance="simple"}
 
-```{r, data-1}
+```{r}
 #| echo: true
 #| eval: false
 #| output: false
@@ -524,7 +524,7 @@ plankton_seasonality <- read_csv("./../../assets/data/zooplankton_seasonality.cs
 str(plankton_seasonality)
 ```
 or
-```{r}
+```{r, data-1}
 #| echo: true
 #| eval: false
 setwd("/Users/kinlan/OneDrive - Stockholm University/PhD/Teaching/MarineEcosystemDynamics2023/Tutorial")
