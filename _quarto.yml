@@ -19,8 +19,13 @@ website:
         text: HOME
       - href: about.html
         text: ABOUT
-      - href: program.html
-        text: MATERIAL
+      - text: MATERIAL
+        menu: 
+          - text: Slides and exercises
+            href: program.html
+          - text: ggplot explorator
+            href: "https://marineecosystemdynamics.shinyapps.io/ggplotExplorator/"
+            target: "_blank"
       - icon: "github"
         href: "https://github.com/KMGJan/MED"
         target: "_blank"
