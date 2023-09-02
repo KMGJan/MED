@@ -8,7 +8,6 @@ title-slide-attributes:
 format: 
    revealjs:
     fontsize: 25pt
-    theme: dark
     slide-number: true
     show-slide-number: all
     chalkboard: true
