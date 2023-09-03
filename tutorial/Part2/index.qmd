@@ -678,6 +678,7 @@ p
 ```{r, bag-9}
 #| echo: false
 #| eval: true
+#| message: false
 df_summary <- df |>
   group_by(Month_abb, Station) |> 
   summarise(Average = mean(Biomass),
