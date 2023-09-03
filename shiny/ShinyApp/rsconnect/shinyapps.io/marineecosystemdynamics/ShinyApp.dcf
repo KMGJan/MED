@@ -1,0 +1,13 @@
+name: ShinyApp
+title: ShinyApp
+username:
+account: marineecosystemdynamics
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 9748895
+bundleId: 7637591
+url: https://marineecosystemdynamics.shinyapps.io/ShinyApp/
+when: 1693659306.76027
+lastSyncTime: 1693659306.76028
+asMultiple: FALSE
+asStatic: FALSE
