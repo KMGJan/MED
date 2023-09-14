@@ -23,7 +23,7 @@ website:
         menu: 
           - text: Slides and exercises
             href: program.html
-          - text: ggplot explorator
+          - text: ggplot explorer
             href: "https://marineecosystemdynamics.shinyapps.io/ggplotExplorator/"
             target: "_blank"
       - icon: "github"
