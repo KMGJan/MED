@@ -18,7 +18,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "During this introduction course, we will learn the basics of R and how to manipulate data.\nThroughout this introduction, we will learn how to use  in .\nThis introduction covers:\n\n\n\nR syntax\nData import using readr\nPipe the data using magrittr\nTidy the data using tidyr\nArrange the data using dplyr\nVisualise the data using ggplot2\n\nThe data we will use are all available in the package PlanktonData\n\n\n\n\n\nInstall R and R studio before the start of the lecture !"
+    "text": "During this introduction course, we will learn the basics of R and how to handle data.\nThroughout this introduction, we will learn how to use  in .\nThis introduction covers:\n\n\n\nR syntax\nData import using readr\nPipe the data using magrittr\nTidy the data using tidyr\nArrange the data using dplyr\nVisualise the data using ggplot2\n\nThe data we will use are all available in the package PlanktonData\n\n\n\n\n\nInstall R and R studio before the start of the lecture !"
   },
   {
     "objectID": "slides/Part1/index.html#plan-for-todays-lecture",
