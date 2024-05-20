@@ -19,7 +19,7 @@ toc: false
 
 
 
-During this introduction course, we will learn the basics of R and how to manipulate data.
+During this introduction course, we will learn the basics of R and how to handle data.
 
 Throughout this introduction, we will learn how to use ![](./assets/images/Rlogo.svg){height=1.5em style=margin-bottom;} in ![](./assets/images/RSTUDIO.png){height=1.5em style=margin-bottom;}.
 
